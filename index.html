@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKIRA BODY ART — Distribuidor de Material de Tattoo &amp; Piercing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101012;
+    --bg-2:#18181b;
+    --panel:#1f1f23;
+    --paper:#f4f2ec;
+    --paper-2:#ece8dd;
+    --ink:#171614;
+    --ink-soft:#6b665c;
+    --white:#f6f4ee;
+    --gray:#a9a6a0;
+    --gold:#c99a3d;
+    --gold-bright:#e0b563;
+    --line-dark:rgba(246,244,238,0.12);
+    --line-light:rgba(23,22,20,0.12);
+    --serif:'Fraunces', serif;
+    --sans:'Archivo', sans-serif;
+    --mono:'Space Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--gold);color:var(--bg);}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px;}
+
+  .eyebrow{
+    font-family:var(--sans);font-weight:700;font-size:12px;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);
+  }
+
+  /* utility bar */
+  .utility-bar{background:var(--bg);border-bottom:1px solid var(--line-dark);}
+  .utility-bar .wrap{display:flex;justify-content:space-between;align-items:center;height:40px;flex-wrap:wrap;gap:8px;}
+  .u-left{display:flex;gap:28px;}
+  .u-item{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--gray);letter-spacing:0.01em;}
+  .u-item svg{width:14px;height:14px;stroke:var(--gold);flex-shrink:0;}
+  .u-right a{font-size:11.5px;color:var(--gray);display:flex;align-items:center;gap:6px;}
+  .u-right a svg{width:13px;height:13px;stroke:var(--gray);}
+  .u-right a:hover{color:var(--white);}
+
+  /* header */
+  header.site{position:sticky;top:0;z-index:50;background:rgba(16,16,18,0.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-dark);}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;height:84px;}
+  .logo{font-family:var(--serif);font-size:25px;font-weight:700;letter-spacing:0.01em;color:var(--white);line-height:1;}
+  .logo .sub{display:block;font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.26em;color:var(--gray);text-transform:uppercase;margin-top:4px;}
+  nav.primary{display:flex;gap:34px;}
+  nav.primary a{font-size:13px;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;color:var(--white);position:relative;padding-bottom:6px;display:flex;align-items:center;gap:4px;}
+  nav.primary a.active{color:var(--gold-bright);}
+  nav.primary a.active::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--gold);}
+  nav.primary a:hover{color:var(--gold-bright);}
+  nav.primary a svg{width:11px;height:11px;stroke:currentColor;}
+  .nav-actions{display:flex;align-items:center;gap:20px;}
+  .icon-btn{display:flex;align-items:center;gap:8px;color:var(--white);position:relative;}
+  .icon-btn svg{width:19px;height:19px;stroke:var(--white);}
+  .icon-btn:hover svg{stroke:var(--gold-bright);}
+  .cart-count{background:var(--gold);color:var(--bg);font-family:var(--sans);font-weight:800;font-size:10px;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-8px;right:-9px;}
+  .burger{display:none;background:none;border:none;color:var(--white);}
+
+  /* hero */
+  .hero{position:relative;background:
+      radial-gradient(ellipse 900px 500px at 78% 30%, rgba(201,154,61,0.10), transparent 60%),
+      linear-gradient(120deg, #0a0a0b 0%, #131315 55%, #1c1a16 100%);
+    overflow:hidden;border-bottom:1px solid var(--line-dark);}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;gap:40px;min-height:600px;padding-top:70px;padding-bottom:70px;}
+  .hero-copy .eyebrow{display:block;margin-bottom:18px;}
+  .hero-copy h1{font-family:var(--sans);font-weight:900;font-size:clamp(38px,4.6vw,58px);line-height:1.02;letter-spacing:-0.01em;text-transform:uppercase;color:var(--white);}
+  .hero-copy h1 span{color:var(--gold-bright);}
+  .hero-copy p.lede{margin-top:24px;max-width:420px;font-size:15.5px;line-height:1.7;color:var(--gray);}
+  .hero-cta{margin-top:34px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:0.03em;text-transform:uppercase;padding:16px 28px;transition:all .25s ease;}
+  .btn-solid{background:var(--gold);color:var(--bg);border:1px solid var(--gold);}
+  .btn-solid:hover{background:var(--gold-bright);border-color:var(--gold-bright);}
+  .btn-line{color:var(--white);border:1px solid var(--line-dark);}
+  .btn-line:hover{border-color:var(--white);}
+  .btn svg{width:15px;height:15px;stroke:currentColor;}
+
+  .hero-art{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:4/4.6;width:100%;}
+  #machine-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;}
+  .hero-art .fallback-svg{position:absolute;inset:0;width:100%;height:100%;display:none;}
+  .hero-art.no-webgl .fallback-svg{display:block;}
+  .hero-art.no-webgl #machine-canvas{display:none;}
+  .draw-line{stroke-dasharray:1500;stroke-dashoffset:1500;animation:draw 2.6s ease forwards .3s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @media (prefers-reduced-motion: reduce){.draw-line{animation:none;stroke-dashoffset:0;}}
+
+  /* feature strip */
+  .feature-strip{background:var(--bg-2);border-bottom:1px solid var(--line-dark);}
+  .feature-strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);}
+  .feature-item{padding:30px 24px;display:flex;gap:16px;align-items:flex-start;border-left:1px solid var(--line-dark);}
+  .feature-item:first-child{border-left:none;}
+  .feature-item svg{width:26px;height:26px;stroke:var(--gold);flex-shrink:0;}
+  .feature-item h4{font-size:13.5px;font-weight:700;letter-spacing:0.01em;color:var(--white);text-transform:uppercase;}
+  .feature-item p{font-size:12.5px;color:var(--gray);margin-top:4px;line-height:1.5;}
+
+  /* section shared */
+  .section{padding:100px 0;}
+  .section-head-center{text-align:center;max-width:640px;margin:0 auto 60px;}
+  .section-head-center h2{font-family:var(--sans);font-weight:800;font-size:clamp(28px,3.4vw,40px);text-transform:uppercase;letter-spacing:-0.005em;margin-top:14px;color:var(--ink);}
+  .section-head-center .rule{width:56px;height:3px;background:var(--gold);margin:18px auto 0;}
+  .alt-dark{background:var(--bg);color:var(--white);}
+  .alt-dark .eyebrow{color:var(--gold-bright);}
+
+  /* category cards */
+  .cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
+  .cat-card{background:var(--paper);border:1px solid var(--line-light);transition:transform .3s ease, box-shadow .3s ease;}
+  .cat-card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(23,22,20,0.12);}
+  .cat-thumb{aspect-ratio:1/1;background:linear-gradient(150deg,#221f19,#0c0b0a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .cat-thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%, rgba(201,154,61,0.22), transparent 60%);}
+  .cat-thumb svg{width:46%;height:46%;stroke:var(--gold-bright);position:relative;z-index:1;}
+  .cat-body{padding:20px 18px 24px;}
+  .cat-body .icon-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .cat-body .icon-row svg{width:16px;height:16px;stroke:var(--gold);}
+  .cat-body h3{font-family:var(--sans);font-weight:800;font-size:14.5px;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink);}
+  .cat-body p{font-size:12.5px;color:var(--ink-soft);line-height:1.55;margin-top:6px;min-height:38px;}
+  .cat-body .go{margin-top:12px;display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);}
+  .cat-body .go svg{width:13px;height:13px;stroke:var(--gold);transition:transform .25s ease;}
+  .cat-card:hover .go svg{transform:translateX(5px);}
+
+  /* brand strip */
+  .brand-strip{background:var(--bg);padding:90px 0;text-align:center;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);}
+  .brand-strip h2{font-family:var(--sans);font-weight:800;font-size:clamp(26px,3vw,36px);text-transform:uppercase;color:var(--white);margin-top:12px;}
+  .brand-row{display:flex;justify-content:center;align-items:center;gap:56px;flex-wrap:wrap;margin-top:50px;margin-bottom:44px;}
+  .brand-row span{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--gray);letter-spacing:0.01em;opacity:.85;transition:opacity .2s ease, color .2s ease;}
+  .brand-row span:hover{opacity:1;color:var(--gold-bright);}
+  .brand-strip .btn-line{border-color:var(--line-dark);}
+
+  /* why us */
+  .why-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center;}
+  .why-copy .eyebrow{display:block;margin-bottom:16px;}
+  .why-copy h2{font-family:var(--sans);font-weight:800;font-size:clamp(28px,3.2vw,38px);line-height:1.18;text-transform:uppercase;color:var(--ink);}
+  .why-list{display:grid;grid-template-columns:1fr 1fr;gap:34px 30px;}
+  .why-item svg{width:30px;height:30px;stroke:var(--gold);margin-bottom:14px;}
+  .why-item h4{font-family:var(--sans);font-weight:800;font-size:13.5px;text-transform:uppercase;letter-spacing:0.03em;color:var(--ink);}
+  .why-item p{font-size:12.5px;color:var(--ink-soft);margin-top:6px;line-height:1.6;}
+
+  /* locations */
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-dark);border:1px solid var(--line-dark);margin-top:60px;}
+  .loc-card{background:var(--bg-2);padding:36px;}
+  .loc-card h3{font-family:var(--sans);font-weight:800;font-size:19px;text-transform:uppercase;color:var(--white);margin:12px 0 16px;}
+  .loc-line{display:flex;gap:12px;font-size:13px;color:var(--gray);margin-bottom:11px;line-height:1.6;}
+  .loc-line svg{width:15px;height:15px;stroke:var(--gold);flex-shrink:0;margin-top:2px;}
+  .loc-line strong{color:var(--white);font-weight:700;}
+
+  /* newsletter */
+  .newsletter{background:var(--bg);border-top:1px solid var(--line-dark);padding:50px 0;}
+  .news-inner{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;}
+  .news-copy .eyebrow{display:block;margin-bottom:6px;}
+  .news-copy p{font-size:13px;color:var(--gray);max-width:320px;line-height:1.5;}
+  .news-form{display:flex;border:1px solid var(--line-dark);min-width:380px;}
+  .news-form input{flex:1;background:transparent;border:none;padding:15px 16px;color:var(--white);font-family:var(--sans);font-size:13px;}
+  .news-form input::placeholder{color:var(--gray);}
+  .news-form input:focus{outline:none;}
+  .news-form button{background:var(--gold);border:none;padding:0 24px;font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:var(--bg);cursor:pointer;transition:background .25s ease;}
+  .news-form button:hover{background:var(--gold-bright);}
+  .news-social{display:flex;gap:12px;align-items:center;}
+  .news-social span{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray);font-weight:700;margin-right:4px;}
+  .news-social a{width:34px;height:34px;border:1px solid var(--line-dark);display:flex;align-items:center;justify-content:center;transition:border-color .25s ease;}
+  .news-social a:hover{border-color:var(--gold);}
+  .news-social svg{width:15px;height:15px;stroke:var(--white);}
+
+  /* footer */
+  footer{background:#0a0a0b;color:var(--white);padding-top:70px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid var(--line-dark);}
+  .footer-brand .logo{margin-bottom:16px;}
+  .footer-brand p{color:var(--gray);font-size:13px;line-height:1.7;max-width:280px;}
+  .footer-col h5{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .footer-col a{display:block;font-size:13.5px;color:var(--gray);margin-bottom:12px;transition:color .2s ease;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:24px 0;font-size:11.5px;color:var(--gray);flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:980px){
+    nav.primary{display:none;}
+    .burger{display:block;}
+    .hero .wrap{grid-template-columns:1fr;min-height:auto;padding-top:50px;}
+    .hero-art{order:-1;}
+    .feature-strip .wrap{grid-template-columns:repeat(2,1fr);}
+    .feature-item:nth-child(3){border-left:none;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:1fr;}
+    .why-list{grid-template-columns:1fr 1fr;}
+    .loc-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .u-left{display:none;}
+    .brand-row{gap:34px;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px;}
+    .cat-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .section{padding:64px 0;}
+    .news-inner{flex-direction:column;align-items:flex-start;}
+    .news-form{min-width:0;width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="wrap">
+    <div class="u-left">
+      <span class="u-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="1" y="7" width="15" height="11" rx="1"/><path d="M16 10h3.6a1 1 0 0 1 .9.5l2 3.5v4a1 1 0 0 1-1 1H21"/></svg>Envíos a toda España y UE</span>
+      <span class="u-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 12l6 6L21 6"/></svg>Productos 100% originales</span>
+      <span class="u-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>Atención profesional</span>
+    </div>
+    <div class="u-right">
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>Iniciar sesión / Crear cuenta</a>
+    </div>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="#" class="logo">AKIRA<span class="sub">Body Art Supply</span></a>
+    <nav class="primary">
+      <a href="#" class="active">Inicio</a>
+      <a href="#tattoo">Productos <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="#marcas">Marcas</a>
+      <a href="#">Ofertas</a>
+      <a href="#">Novedades</a>
+      <a href="#">Blog</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></a>
+      <a href="#" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 6h2l2.4 12.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L22 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg><span class="cart-count">0</span></a>
+    </div>
+    <button class="burger" aria-label="Menú"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Todo lo que necesitas</span>
+      <h1>Material profesional<br>para el arte que <span>perdura</span></h1>
+      <p class="lede">Distribuidor de confianza para tatuadores y piercers de toda España y la Unión Europea. Calidad certificada y trazabilidad en cada pieza.</p>
+      <div class="hero-cta">
+        <a href="#tattoo" class="btn btn-solid">Ver productos <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#nosotros" class="btn btn-line">Quiénes somos</a>
+      </div>
+    </div>
+    <div class="hero-art" id="machine-frame">
+      <canvas id="machine-canvas"></canvas>
+      <svg class="fallback-svg" viewBox="0 0 420 480" fill="none">
+        <g class="draw-line" stroke="var(--gold-bright)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M120 360 L250 200"/>
+          <rect x="222" y="158" width="70" height="50" rx="4" transform="rotate(45 257 183)" fill="rgba(201,154,61,0.12)"/>
+          <circle cx="218" cy="190" r="21"/>
+          <circle cx="250" cy="158" r="21"/>
+          <path d="M120 360 L102 380"/>
+          <path d="M102 380 L92 406"/>
+          <circle cx="92" cy="412" r="5" fill="var(--gold-bright)" stroke="none"/>
+          <path d="M292 138 L322 108"/>
+          <path d="M322 108 L354 108"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="feature-strip">
+  <div class="wrap">
+    <div class="feature-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="1" y="7" width="15" height="11" rx="1"/><path d="M16 10h3.6a1 1 0 0 1 .9.5l2 3.5v4a1 1 0 0 1-1 1H21"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="17.5" cy="18.5" r="1.6"/></svg>
+      <div><h4>Envíos rápidos</h4><p>A toda España en 24–48h</p></div>
+    </div>
+    <div class="feature-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.4 8.7-8 10-4.6-1.3-8-5-8-10V6l8-4z"/></svg>
+      <div><h4>Productos originales</h4><p>Solo marcas oficiales certificadas</p></div>
+    </div>
+    <div class="feature-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+      <div><h4>Atención experta</h4><p>Asesoramiento por profesionales</p></div>
+    </div>
+    <div class="feature-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      <div><h4>Compra segura</h4><p>Tus datos y pagos protegidos</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tattoo">
+  <div class="wrap">
+    <div class="section-head-center">
+      <span class="eyebrow">Categorías principales</span>
+      <h2>Explora nuestro catálogo</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="cat-grid">
+
+      <div class="cat-card">
+        <div class="cat-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="5" y="9" width="10" height="7" rx="1"/><circle cx="8" cy="7" r="2.6"/><circle cx="14" cy="7" r="2.6"/></svg></div>
+        <div class="cat-body">
+          <div class="icon-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="7" width="14" height="10" rx="1"/></svg><h3>Máquinas</h3></div>
+          <p>Rotativas, inalámbricas y de bobina.</p>
+          <a href="#" class="go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 3c3 3.6 5 6.6 5 9.5A5 5 0 0 1 7 12.5C7 9.6 9 6.6 12 3z"/></svg></div>
+        <div class="cat-body">
+          <div class="icon-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2v20M4 8h16"/></svg><h3>Tintas</h3></div>
+          <p>Líneas, sombreados y mezclas AEMPS.</p>
+          <a href="#" class="go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><line x1="4" y1="20" x2="20" y2="4"/><circle cx="20" cy="4" r="1.4"/></svg></div>
+        <div class="cat-body">
+          <div class="icon-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><line x1="5" y1="19" x2="19" y2="5"/></svg><h3>Agujas y Cartuchos</h3></div>
+          <p>La mejor calidad para cada estilo.</p>
+          <a href="#" class="go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+        <div class="cat-body">
+          <div class="icon-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="8"/></svg><h3>Piercing</h3></div>
+          <p>Titanio G23, oro 14K y anodizado.</p>
+          <a href="#" class="go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><rect x="4" y="4" width="16" height="16" rx="1"/><line x1="4" y1="10" x2="20" y2="10"/></svg></div>
+        <div class="cat-body">
+          <div class="icon-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/></svg><h3>Accesorios</h3></div>
+          <p>Fuentes, grips, cables y mobiliario.</p>
+          <a href="#" class="go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="brand-strip" id="marcas">
+  <div class="wrap">
+    <span class="eyebrow">Marcas líderes</span>
+    <h2>Trabajamos con lo mejor</h2>
+    <div class="brand-row">
+      <span>Kwadron</span>
+      <span>Cheyenne</span>
+      <span>Bishop</span>
+      <span>Eternal Ink</span>
+      <span>EZ Tattoo</span>
+    </div>
+    <a href="#" class="btn btn-line">Ver todas las marcas</a>
+  </div>
+</section>
+
+<section class="section" id="nosotros">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-copy">
+        <span class="eyebrow">¿Por qué elegir Akira?</span>
+        <h2>Somos del oficio,<br>entendemos tus necesidades</h2>
+      </div>
+      <div class="why-list">
+        <div class="why-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l3 6 6 1-4.5 4.4L17.5 20 12 17l-5.5 3 1-6.6L3 9l6-1z"/></svg>
+          <h4>Calidad</h4>
+          <p>Seleccionamos los mejores productos del mercado.</p>
+        </div>
+        <div class="why-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="9" r="5"/><path d="M8 14l-2 7 6-3 6 3-2-7"/></svg>
+          <h4>Experiencia</h4>
+          <p>Casi 20 años abasteciendo estudios profesionales.</p>
+        </div>
+        <div class="why-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.4-1-4.5-2.5-5.8a4.3 4.3 0 0 1 6.5 3.7"/></svg>
+          <h4>Comunidad</h4>
+          <p>Apoyamos el arte y a los tatuadores locales.</p>
+        </div>
+        <div class="why-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 21c9 0 14-5 14-14V4h-3C7 4 5 9 5 15v6z"/></svg>
+          <h4>Responsabilidad</h4>
+          <p>Tintas homologadas y certificación ISO 9001.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="loc-grid" id="ubicaciones">
+      <div class="loc-card">
+        <span class="eyebrow">Oficinas Centrales</span>
+        <h3>Akira Oficinas — Alcorcón</h3>
+        <div class="loc-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Calle Alpedrete, 15 · Parque Empresarial "Ventorro del Cano" · 28925 Alcorcón, Madrid</span></div>
+        <div class="loc-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.2z"/></svg><span><strong>+34 91 376 52 00</strong> · +34 667 587 338</span></div>
+        <div class="loc-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>Lun–Vie 09:00–14:00 y 15:00–17:30</span></div>
+      </div>
+      <div class="loc-card">
+        <span class="eyebrow">Punto de Venta</span>
+        <h3>Akira Delicias — Madrid</h3>
+        <div class="loc-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Paseo de las Delicias, 65-bis, entreplanta izquierda · 28045 Madrid</span></div>
+        <div class="loc-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.2z"/></svg><span><strong>+34 635 24 95 60</strong></span></div>
+        <div class="loc-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>Aforo limitado · Lun–Vie 09:00–14:00 y 15:00–17:30</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" id="contacto">
+  <div class="wrap news-inner">
+    <div class="news-copy">
+      <span class="eyebrow">Suscríbete y obtén novedades</span>
+      <p>Ofertas exclusivas, lanzamientos y contenido para tatuadores.</p>
+    </div>
+    <form class="news-form" onsubmit="event.preventDefault();">
+      <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+      <button type="submit">Suscribirme</button>
+    </form>
+    <div class="news-social">
+      <span>Síguenos</span>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M14 9h3V5h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">AKIRA<span class="sub">Body Art Supply</span></a>
+        <p style="margin-top:16px;">Distribuidor de material de tatuaje, piercing y micropigmentación para profesionales de toda España y la Unión Europea.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Información</h5>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Envíos y pagos</a>
+        <a href="#">Cambios y devoluciones</a>
+        <a href="#">Preguntas frecuentes</a>
+      </div>
+      <div class="footer-col">
+        <h5>Mi Cuenta</h5>
+        <a href="#">Iniciar sesión</a>
+        <a href="#">Mis pedidos</a>
+        <a href="#">Mis favoritos</a>
+        <a href="#">Crear cuenta</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <a href="#">+34 913 765 200</a>
+        <a href="#">akirabodyart@akirabodyart.com</a>
+        <a href="#">Lunes a Viernes de 9 a 18h</a>
+        <a href="#">Certificado ISO 9001:2015</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Akira Body Art. Todos los derechos reservados.</span>
+      <span>Distribuidor de confianza para tatuadores.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var frame = document.getElementById('machine-frame');
+  var canvas = document.getElementById('machine-canvas');
+  if(!frame || !canvas) return;
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function showFallback(){ frame.classList.add('no-webgl'); }
+
+  if(typeof THREE === 'undefined'){ showFallback(); return; }
+
+  var renderer;
+  try{
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+  }catch(e){ showFallback(); return; }
+  if(!renderer){ showFallback(); return; }
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
+  camera.position.set(0.3, 0.4, 6.6);
+
+  // ---- lighting ----
+  scene.add(new THREE.AmbientLight(0x3a3226, 1.6));
+  var goldLight = new THREE.PointLight(0xe0b563, 2.6, 20);
+  goldLight.position.set(3, 3, 4);
+  scene.add(goldLight);
+  var rimLight = new THREE.PointLight(0x8fa6c9, 1.3, 20);
+  rimLight.position.set(-4, -2, -3);
+  scene.add(rimLight);
+  var fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  fillLight.position.set(-2, 4, 5);
+  scene.add(fillLight);
+
+  // ---- materials ----
+  var goldMat = new THREE.MeshStandardMaterial({ color: 0xc99a3d, metalness: 0.85, roughness: 0.28, emissive: 0x2a1c08, emissiveIntensity: 0.15 });
+  var glossyBlack = new THREE.MeshStandardMaterial({ color: 0x0e0e10, metalness: 0.25, roughness: 0.22 });
+  var matteGrip = new THREE.MeshStandardMaterial({ color: 0x0a0a0b, metalness: 0.15, roughness: 0.55 });
+  var chromeMat = new THREE.MeshStandardMaterial({ color: 0xd8d5cc, metalness: 0.95, roughness: 0.12 });
+  var needleMat = new THREE.MeshStandardMaterial({ color: 0xe6e2d8, metalness: 0.95, roughness: 0.1 });
+
+  // ---- build the machine (matched to reference photo) ----
+  var machine = new THREE.Group();
+  machine.rotation.z = -0.30;
+  machine.rotation.x = 0.14;
+
+  var pen = new THREE.Group(); // local axis: length along X, tip (needle) at -X, connector at +X
+  machine.add(pen);
+
+  // rounded nose hood (tip housing)
+  var noseDome = new THREE.Mesh(new THREE.SphereGeometry(0.17, 24, 16), matteGrip);
+  noseDome.scale.set(0.85, 1, 1);
+  noseDome.position.x = -2.42;
+  pen.add(noseDome);
+
+  var noseTaper = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.28, 0.34, 28), matteGrip);
+  noseTaper.rotation.z = Math.PI/2;
+  noseTaper.position.x = -2.16;
+  pen.add(noseTaper);
+
+  // small dark pocket detail where the needle exits
+  var pocket = new THREE.Mesh(new THREE.SphereGeometry(0.09, 14, 10), new THREE.MeshStandardMaterial({ color: 0x000000, metalness: 0.1, roughness: 0.7 }));
+  pocket.scale.set(1, 0.6, 0.8);
+  pocket.position.set(-2.34, -0.1, 0.04);
+  pen.add(pocket);
+
+  // needle assembly — angled out of the pocket, strokes in/out
+  var needleGroup = new THREE.Group();
+  needleGroup.position.set(-2.42, -0.1, 0.03);
+  needleGroup.rotation.z = -0.34;
+  var needleShaft = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.5, 10), needleMat);
+  needleShaft.rotation.z = -Math.PI/2;
+  needleShaft.position.x = -0.2;
+  needleGroup.add(needleShaft);
+  for(var nr=0; nr<4; nr++){
+    var thread = new THREE.Mesh(new THREE.TorusGeometry(0.023, 0.006, 6, 12), chromeMat);
+    thread.rotation.y = Math.PI/2;
+    thread.position.x = -0.08 - nr*0.09;
+    needleGroup.add(thread);
+  }
+  var needleTip = new THREE.Mesh(new THREE.ConeGeometry(0.015, 0.1, 10), needleMat);
+  needleTip.rotation.z = -Math.PI/2;
+  needleTip.position.x = -0.5;
+  needleGroup.add(needleTip);
+  pen.add(needleGroup);
+
+  // bulbous ridged grip (stacked rounded fins)
+  for(var r=0; r<5; r++){
+    var ridge = new THREE.Mesh(new THREE.TorusGeometry(0.29, 0.095, 16, 28), matteGrip);
+    ridge.rotation.y = Math.PI/2;
+    ridge.position.x = -1.98 + r*0.155;
+    pen.add(ridge);
+  }
+
+  // brass accent ring — matches the reference exactly (single ring, this position)
+  var accentRing = new THREE.Mesh(new THREE.TorusGeometry(0.315, 0.03, 14, 30), goldMat);
+  accentRing.rotation.y = Math.PI/2;
+  accentRing.position.x = -1.2;
+  pen.add(accentRing);
+
+  // main glossy barrel
+  var barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.30, 2.15, 32), glossyBlack);
+  barrel.rotation.z = Math.PI/2;
+  barrel.position.x = -0.02;
+  pen.add(barrel);
+
+  // shoulder step down toward the rear
+  var shoulder = new THREE.Mesh(new THREE.CylinderGeometry(0.20, 0.34, 0.22, 28), glossyBlack);
+  shoulder.rotation.z = Math.PI/2;
+  shoulder.position.x = 1.17;
+  pen.add(shoulder);
+
+  // rear section — grouped so it can spin (hints at the internal motor)
+  var rearMotor = new THREE.Group();
+  rearMotor.position.x = 1.6;
+  var rearBody = new THREE.Mesh(new THREE.CylinderGeometry(0.20, 0.20, 0.7, 28), glossyBlack);
+  rearBody.rotation.z = Math.PI/2;
+  rearMotor.add(rearBody);
+  var spinDot = new THREE.Mesh(new THREE.SphereGeometry(0.03, 10, 8), goldMat);
+  spinDot.position.set(0, 0.19, 0.08);
+  rearMotor.add(spinDot);
+  var connectorNub = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.16, 0.35, 20), chromeMat);
+  connectorNub.rotation.z = Math.PI/2;
+  connectorNub.position.x = 0.52;
+  rearMotor.add(connectorNub);
+  var endCap = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), chromeMat);
+  endCap.position.x = 0.7;
+  rearMotor.add(endCap);
+  pen.add(rearMotor);
+
+  // small gold switch detail on the barrel
+  var switchBtn = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.03, 16), goldMat);
+  switchBtn.rotation.x = Math.PI/2;
+  switchBtn.position.set(0.15, 0.335, 0);
+  pen.add(switchBtn);
+
+  // cord trailing from the connector
+  var cablePoints = [];
+  for(var c=0;c<10;c++){
+    cablePoints.push(new THREE.Vector3(2.35 + c*0.16, -Math.sin(c*0.55)*0.22 - c*0.05, 0.05 + c*0.03));
+  }
+  var cableCurve = new THREE.CatmullRomCurve3(cablePoints);
+  var cableGeo = new THREE.TubeGeometry(cableCurve, 24, 0.032, 8, false);
+  var cable = new THREE.Mesh(cableGeo, matteGrip);
+  pen.add(cable);
+
+  machine.scale.setScalar(1.0);
+  scene.add(machine);
+
+  // ---- interaction state ----
+  var targetRotY = 0.15, targetRotX = 0.08;
+  var currentRotY = targetRotY, currentRotX = targetRotX;
+  var dragging = false, lastX = 0, lastY = 0;
+  var autoSpin = true;
+
+  function pointerDown(x,y){ dragging = true; autoSpin = false; lastX = x; lastY = y; canvas.style.cursor = 'grabbing'; }
+  function pointerMove(x,y){
+    if(!dragging) return;
+    var dx = x - lastX, dy = y - lastY;
+    targetRotY += dx * 0.005;
+    targetRotX += dy * 0.005;
+    targetRotX = Math.max(-0.6, Math.min(0.6, targetRotX));
+    lastX = x; lastY = y;
+  }
+  function pointerUp(){ dragging = false; canvas.style.cursor = 'grab'; }
+
+  canvas.addEventListener('mousedown', function(e){ pointerDown(e.clientX, e.clientY); });
+  window.addEventListener('mousemove', function(e){ pointerMove(e.clientX, e.clientY); });
+  window.addEventListener('mouseup', pointerUp);
+  canvas.addEventListener('touchstart', function(e){ var t=e.touches[0]; pointerDown(t.clientX, t.clientY); }, {passive:true});
+  canvas.addEventListener('touchmove', function(e){ var t=e.touches[0]; pointerMove(t.clientX, t.clientY); }, {passive:true});
+  canvas.addEventListener('touchend', pointerUp);
+
+  function resize(){
+    var w = frame.clientWidth, h = frame.clientHeight;
+    if(w === 0 || h === 0) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var clock = new THREE.Clock();
+
+  function animate(){
+    requestAnimationFrame(animate);
+    var t = clock.getElapsedTime();
+    var delta = clock.getDelta();
+
+    if(autoSpin && !reduceMotion){ targetRotY += delta * 0.18; }
+
+    currentRotY += (targetRotY - currentRotY) * 0.08;
+    currentRotX += (targetRotX - currentRotX) * 0.08;
+    machine.rotation.y = currentRotY;
+    machine.rotation.x = currentRotX;
+
+    if(!reduceMotion){
+      rearMotor.rotation.x = t * 7.5;
+      needleGroup.position.x = -2.42 + Math.sin(t * 34) * 0.045;
+      machine.position.y = Math.sin(t * 0.6) * 0.08;
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  renderer.domElement.addEventListener('webglcontextlost', function(e){ e.preventDefault(); showFallback(); });
+
+  try{
+    animate();
+  }catch(e){ showFallback(); }
+})();
+</script>
+
+</body>
+</html>
