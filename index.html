@@ -554,6 +554,14 @@
   needleTip.rotation.z = Math.PI/2;
   needleTip.position.x = -0.255;
   needleGroup.add(needleTip);
+  // fine needle cluster fanning out at the very tip, each rod perfectly straight and axis-parallel
+  for(var nf=0; nf<5; nf++){
+    var fineAngle = (nf / 5) * Math.PI * 2;
+    var fineTip = new THREE.Mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.15, 6), needleMat);
+    fineTip.rotation.z = Math.PI/2;
+    fineTip.position.set(-0.245, Math.cos(fineAngle) * 0.018, Math.sin(fineAngle) * 0.018);
+    needleGroup.add(fineTip);
+  }
   var needleBaseX = needleGroup.position.x;
 
   // ridged grip fins
@@ -624,7 +632,7 @@
 
   // continuous axial roll — the pen twirling around its own barrel axis while tattooing
   var penSpin = 0, currentPenSpinSpeed = 0;
-  var targetPenSpinSpeed = 5.2;
+  var targetPenSpinSpeed = 6.6;
 
   // smooth pseudo-random drift built from a few incommensurate sine waves —
   // reads as organic hand motion instead of the single-frequency, robotic sine it replaces
@@ -730,7 +738,7 @@
       // continuous fast axial roll around the pen's own barrel axis, like a rotary machine
       // twirling in an artist's grip — speed itself wanders gently so it never reads as a
       // constant, mechanical spin, and it's eased in/out (never starts or stops instantly)
-      targetPenSpinSpeed = 5.2 + wander(t * 0.3, seed + 400) * 1.4;
+      targetPenSpinSpeed = 6.6 + wander(t * 0.3, seed + 400) * 1.6;
       currentPenSpinSpeed += (targetPenSpinSpeed - currentPenSpinSpeed) * 0.02;
       penSpin = (penSpin + currentPenSpinSpeed * delta) % (Math.PI * 2);
       pen.rotation.x = penSpin;
