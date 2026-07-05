@@ -173,6 +173,57 @@
   .footer-col a{display:block;font-size:13.5px;color:var(--gray);margin-bottom:12px;transition:color .2s ease;}
   .footer-col a:hover{color:var(--white);}
   .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:24px 0;font-size:11.5px;color:var(--gray);flex-wrap:wrap;gap:10px;}
+  .footer-social{display:flex;gap:10px;margin-top:18px;}
+  .footer-social a{width:32px;height:32px;border:1px solid var(--line-dark);display:flex;align-items:center;justify-content:center;transition:border-color .2s ease;}
+  .footer-social a:hover{border-color:var(--gold);}
+  .footer-social svg{width:14px;height:14px;stroke:var(--white);}
+
+  /* mega menu */
+  .nav-item{position:relative;}
+  .nav-top{cursor:pointer;}
+  .mega{position:fixed;top:132px;left:50%;transform:translateX(-50%);background:var(--bg-2);border:1px solid var(--line-dark);box-shadow:0 24px 60px rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .18s ease, top .18s ease;z-index:70;padding:32px;width:min(92vw,1180px);max-height:calc(100vh - 160px);overflow-y:auto;}
+  .nav-item:hover .mega{opacity:1;visibility:visible;top:124px;}
+  .mega-cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:26px 22px;}
+  .mega-col-title{display:block;font-family:var(--sans);font-weight:800;color:var(--gold-bright);font-size:12px;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:12px;}
+  .mega-col-title:hover{color:var(--white);}
+  .mega-col ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .mega-col ul a{font-size:12px;color:var(--gray);line-height:1.4;}
+  .mega-col ul a:hover{color:var(--white);}
+  .nav-flat{position:absolute;top:100%;left:0;transform:translateY(8px);background:var(--bg-2);border:1px solid var(--line-dark);box-shadow:0 24px 60px rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .18s ease, transform .18s ease;z-index:70;padding:14px 20px;min-width:220px;display:flex;flex-direction:column;gap:9px;}
+  .nav-item:hover .nav-flat{opacity:1;visibility:visible;transform:translateY(0);}
+  .nav-flat a{font-size:12.5px;color:var(--gray);text-transform:none;font-weight:500;letter-spacing:0;}
+  .nav-flat a:hover{color:var(--white);}
+  .nav-item:last-of-type .nav-flat,.nav-item:nth-last-of-type(2) .nav-flat{left:auto;right:0;}
+
+  /* novedades / product cards */
+  .novedades{padding:90px 0;background:var(--paper);border-bottom:1px solid var(--line-light);}
+  .novedades-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:40px;}
+  .novedades-head h2{font-family:var(--sans);font-weight:800;font-size:clamp(24px,3vw,32px);text-transform:uppercase;letter-spacing:-0.005em;color:var(--ink);}
+  .ver-todos{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink);}
+  .ver-todos svg{width:14px;height:14px;stroke:currentColor;transition:transform .2s ease;}
+  .ver-todos:hover{color:var(--gold);}
+  .ver-todos:hover svg{transform:translateX(4px);}
+  .product-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .product-card{background:#fff;border:1px solid var(--line-light);padding:18px;display:flex;flex-direction:column;transition:transform .25s ease, box-shadow .25s ease;}
+  .product-card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(23,22,20,0.12);}
+  .product-thumb{display:block;aspect-ratio:1/1;background:#fff;margin-bottom:14px;position:relative;overflow:hidden;}
+  .product-thumb img{width:100%;height:100%;object-fit:contain;}
+  .tag-stock{position:absolute;top:10px;left:10px;background:var(--ink);color:var(--white);font-size:9.5px;text-transform:uppercase;letter-spacing:0.05em;padding:4px 8px;font-weight:700;}
+  .product-ref{font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;font-family:var(--mono);}
+  .product-card h3{font-family:var(--sans);font-size:14px;font-weight:700;line-height:1.35;margin-bottom:6px;}
+  .product-card h3 a{color:var(--ink);}
+  .product-card h3 a:hover{color:var(--gold);}
+  .product-desc{font-size:12px;color:var(--ink-soft);line-height:1.5;margin-bottom:12px;flex:1;}
+  .product-price{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--ink);margin-bottom:14px;display:block;}
+  .product-cta{width:100%;justify-content:center;padding:12px 18px;font-size:11.5px;}
+  .novedades .btn-line{color:var(--ink);border-color:var(--line-light);}
+  .novedades .btn-line:hover{border-color:var(--ink);}
+  .price-note{font-size:11.5px;color:var(--ink-soft);text-align:center;padding:18px 0;background:var(--paper);}
+
+  /* newsletter legal check */
+  .news-form-wrap{display:flex;flex-direction:column;gap:8px;}
+  .legal-check{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--gray);}
+  .legal-check input{accent-color:var(--gold);}
 
   @media (max-width:980px){
     nav.primary{display:none;}
@@ -188,9 +239,11 @@
     .footer-grid{grid-template-columns:1fr 1fr;}
     .u-left{display:none;}
     .brand-row{gap:34px;}
+    .product-row{grid-template-columns:repeat(2,1fr);}
   }
   @media (max-width:560px){
     .wrap{padding:0 20px;}
+    .product-row{grid-template-columns:1fr;}
     .cat-grid{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr;}
     .section{padding:64px 0;}
@@ -217,13 +270,610 @@
 <header class="site">
   <div class="wrap nav-row">
     <a href="#" class="logo">AKIRA<span class="sub">Body Art Supply</span></a>
-    <nav class="primary">
+    <nav class="primary" id="primary-nav">
       <a href="#" class="active">Inicio</a>
-      <a href="#tattoo">Productos <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="nav-item">
+        <a href="#" class="nav-top">Tattoo<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega" id="mega-tattoo">
+          <div class="mega-cols">
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/agujas-de-tatuar.html">Agujas de tatuar</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/679-cartuchos-akira.html">AKIRA</a></li>
+                <li><a href="https://www.akirabodyart.com/909-cartuchos-edge-pro.html">EDGE PRO</a></li>
+                <li><a href="https://www.akirabodyart.com/1019-arrow.html">ARROW</a></li>
+                <li><a href="https://www.akirabodyart.com/1027-ozer-g.html">OZER G</a></li>
+                <li><a href="https://www.akirabodyart.com/905-da-vinci.html">DA VINCI</a></li>
+                <li><a href="https://www.akirabodyart.com/976-fineline.html">FINELINE</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/agujas-de-tatuar/cartuchos-ez-revolution.html">EZ REVOLUTION</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/agujas-de-tatuar/cartuchos-kwadron.html">KWADRON</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/agujas-de-tatuar/cartuchos-elite.html">ELITE</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/agujas-de-tatuar/agujas-akira.html">Agujas AKIRA</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/agujas-de-tatuar/agujas-platinum.html">Agujas PLATINUM</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/agujas-de-tatuar/agujas-kwadron.html">Agujas KWADRON</a></li>
+                <li><a href="https://www.akirabodyart.com/846-agujas-boli.html">Agujas-Boli</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/maquinas-rotativas.html">Máquinas Rotativas</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/699-wireless.html">WIRELESS</a></li>
+                <li><a href="https://www.akirabodyart.com/821-baterias.html">BATERÍAS</a></li>
+                <li><a href="https://www.akirabodyart.com/819-wireless-eco.html">WIRELESS ECO</a></li>
+                <li><a href="https://www.akirabodyart.com/823-baterias-eco.html">BATERÍAS ECO</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/otras.html">ECONÓMICAS</a></li>
+                <li><a href="https://www.akirabodyart.com/935-arx.html">ARX</a></li>
+                <li><a href="https://www.akirabodyart.com/1010-ink-lab.html">INK LAB</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/spektra.html">FK IRONS</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/cheyenne.html">CHEYENNE</a></li>
+                <li><a href="https://www.akirabodyart.com/848-critical.html">CRITICAL</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/bishop.html">BISHOP</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/equaliser.html">EQUALISER</a></li>
+                <li><a href="https://www.akirabodyart.com/1003-musotoku.html">MUSOTOKU</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/artdriver.html">ARTDRIVER</a></li>
+                <li><a href="https://www.akirabodyart.com/681-ava.html">AVA</a></li>
+                <li><a href="https://www.akirabodyart.com/980-ambition.html">AMBITION</a></li>
+                <li><a href="https://www.akirabodyart.com/793-mast.html">MAST</a></li>
+                <li><a href="https://www.akirabodyart.com/703-electric-ink.html">ELECTRIC INK</a></li>
+                <li><a href="https://www.akirabodyart.com/915-merka-machines.html">MERKA MACHINES</a></li>
+                <li><a href="https://www.akirabodyart.com/927-kobra-irons.html">KOBRA IRONS</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/pablo-1880.html">PABLO 1880</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/elite.html">ELITE</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/five-moths.html">FIVE MOTHS</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/ez-tattoo.html">EZ Tattoo</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/hummingbird.html">HUMMINGBIRD</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/paulo-cruzes.html">PAULO CRUZES</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/lauro-paolini.html">LAURO PAOLINI</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/inkjecta.html">INKJECTA</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/victor-portugal.html">VICTOR PORTUGAL</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/ego.html">EGO</a></li>
+                <li><a href="https://www.akirabodyart.com/683-coko.html">COKO</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/alex.html">ALEX</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/dino-casarini.html">DINO CASARINI</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/nick.html">NICK</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/bala.html">BALA</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/hand-poked-tattoo.html">Hand-Poked Tattoo</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-rotativas/repuestos-accesorios.html">Repuestos - Accesorios</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas.html">Máquinas de Bobinas</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/alex-rodriguez.html">Alex Rodríguez</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/coko.html">Coko</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/ruski-machines.html">RUSKI MACHINES</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/diego-morales.html">Diego Morales</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/bara.html">Bara</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/nick.html">Nick</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/maquinas-economicas.html">Máquinas Económicas</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/hand-poked-tattoo.html">Hand-Poked Tattoo</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/mini-maquinas.html">Mini-máquinas</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/maquinas-de-juguete.html">Máquinas de Juguete</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/herramientas-para-maquinas.html">Herramientas para máquinas</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/maquinas-de-bobinas/repuestos-para-maquinas.html">Repuestos para máquinas</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/kits-de-tattoo.html">KITs de Tattoo</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/tattoo/kits-de-tattoo/kits-de-tattoo.html">KITs de Tattoo</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/tintas-homologadas.html">Tintas AEMPS</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/723-viking.html">VIKING</a></li>
+                <li><a href="https://www.akirabodyart.com/856-electric-ink.html">ELECTRIC INK</a></li>
+                <li><a href="https://www.akirabodyart.com/889-biotek.html">BIOTEK</a></li>
+                <li><a href="https://www.akirabodyart.com/899-eclipse.html">ECLIPSE</a></li>
+                <li><a href="https://www.akirabodyart.com/919-doreme.html">DOREME</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/778-sin-nombre.html">Tintas de Uso Artístico</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/911-eternal-ink.html">ETERNAL INK</a></li>
+                <li><a href="https://www.akirabodyart.com/1021-solid-ink.html">SOLID INK</a></li>
+                <li><a href="https://www.akirabodyart.com/946-dermaglo.html">DERMAGLO</a></li>
+                <li><a href="https://www.akirabodyart.com/897-vice.html">VICE</a></li>
+                <li><a href="https://www.akirabodyart.com/1031-flash-colorz.html">FLASH COLORZ</a></li>
+                <li><a href="https://www.akirabodyart.com/756-world-famous.html">WORLD FAMOUS</a></li>
+                <li><a href="https://www.akirabodyart.com/815-radiant.html">RADIANT</a></li>
+                <li><a href="https://www.akirabodyart.com/1039-hype.html">HYPE</a></li>
+                <li><a href="https://www.akirabodyart.com/1041-allegory.html">ALLEGORY</a></li>
+                <li><a href="https://www.akirabodyart.com/970-kwadron.html">KWADRON</a></li>
+                <li><a href="https://www.akirabodyart.com/929-dynamic.html">DYNAMIC</a></li>
+                <li><a href="https://www.akirabodyart.com/1043-obake.html">OBAKE</a></li>
+                <li><a href="https://www.akirabodyart.com/931-nuclear-white.html">NUCLEAR WHITE</a></li>
+                <li><a href="https://www.akirabodyart.com/1045-sombras.html">SOMBRAS</a></li>
+                <li><a href="https://www.akirabodyart.com/518-diluyentes.html">DILUYENTES</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/tips-y-grips-tattoo.html">Tips y Grips Tattoo</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/510-desechables-mas-agujas.html">Desechables más Agujas</a></li>
+                <li><a href="https://www.akirabodyart.com/463-desechables-cartucho.html">Desechables Cartucho</a></li>
+                <li><a href="https://www.akirabodyart.com/374-tips-desechables.html">Tips Desechables</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/tips-y-grips-tattoo/grips-telescopicos.html">Grips Telescópicos</a></li>
+                <li><a href="https://www.akirabodyart.com/376-grips-desechables.html">Grips Desechables</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/tips-y-grips-tattoo/grips-para-cartuchos.html">Grips para Cartuchos</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/tips-y-grips-tattoo/grips.html">Grips</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/tips-y-grips-tattoo/tips.html">Tips</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/fuentes.html">Fuentes y Baterías</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/826-baterias.html">BATERÍAS</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/fuentes/venom.html">BATERÍAS ECONÓMICAS</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/fuentes/kwadron.html">KWADRON</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/fuentes/musotoku.html">MUSOTOKU</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/fuentes/five-moths.html">FIVE MOTHS</a></li>
+                <li><a href="https://www.akirabodyart.com/701-fk-irons.html">FK IRONS</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/fuentes/lauro-paolini.html">LAURO PAOLINI</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/fuentes/critical-tattoo.html">CRITICAL TATTOO</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/fuentes/cheyenne.html">CHEYENNE</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/fuentes/fuentes-economicas.html">Fuentes Económicas</a></li>
+                <li><a href="https://www.akirabodyart.com/721-cables-y-transformadores.html">Cables y Transformadores</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/pedales.html">Cables y Pedales</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/276-conector-rca.html">Conector RCA</a></li>
+                <li><a href="https://www.akirabodyart.com/278-conector-clip-cord.html">Conector Clip-Cord</a></li>
+                <li><a href="https://www.akirabodyart.com/280-conmut-adapt.html">Conmut. - Adapt.</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/pedales/pedales-custom.html">Pedales CUSTOM</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/pedales/pedales-economicos.html">Pedales Económicos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/accesorios-tattoo.html">Accesorios Tattoo</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/887-stencil.html">Stencil</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/accesorios-tattoo/calco-dibujo.html">Accesorios Calco</a></li>
+                <li><a href="https://www.akirabodyart.com/675-accesorios-dibujo.html">Accesorios Dibujo</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/accesorios-tattoo/accesorios-maquina.html">Accesorios Máquina</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/accesorios-tattoo/accesorios-tinta.html">Accesorios Tinta</a></li>
+                <li><a href="https://www.akirabodyart.com/677-accesorios-practicas.html">Accesorios Prácticas</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/accesorios-tattoo/accesorios-varios.html">Accesorios varios</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/sanitario-tattoo.html">Sanitario Tattoo</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/guantes.html">Guantes</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/limpieza-jabones.html">Limpieza - Jabones</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/desinfeccion.html">Desinfección</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/proteccion-fundas.html">Protección - Fundas</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/cuidados-tattoo.html">Cuidados Tattoo</a></li>
+                <li><a href="https://www.akirabodyart.com/1037-cuidados-cianocrilato.html">Cuidados Cianocrilato</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/saniderm.html">Apósitos Curación</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/preparacion-del-tattoo.html">Preparación del Tattoo</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/gestion-de-residuos.html">Gestión de Residuos</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/sanitario-tattoo/maquinas-de-limpieza.html">Esterilización</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/laser.html">Láser</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/tattoo/laser/laser.html">Láser</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/mobiliario.html">Mobiliario</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/tattoo/mobiliario/muebles.html">Camillas</a></li>
+                <li><a href="https://www.akirabodyart.com/862-mesas.html">Mesas</a></li>
+                <li><a href="https://www.akirabodyart.com/860-taburetes.html">Taburetes</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/mobiliario/apoyabrazos.html">Apoyabrazos</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/mobiliario/iluminacion.html">Iluminación</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/mobiliario/rotulos-luminosos.html">Rótulos Luminosos</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/mobiliario/lavamanos.html">Lavamanos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/libreria-dvds-flash.html">Librería, DVDs, Flash</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/tattoo/libreria-dvds-flash/libros.html">Libros</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/libreria-dvds-flash/dvds.html">DVDs</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/libreria-dvds-flash/flash.html">Flash</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/merchandising.html">Decoración</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/746-posters.html">Pósters</a></li>
+                <li><a href="https://www.akirabodyart.com/237-decoracion.html">Decoración</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/merchandising/merchandising.html">Varios</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/tattoo/outlet-tattoo.html">Outlet Tattoo</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/tattoo/outlet-tattoo/oferta-maquinas.html">Oferta Máquinas Rotativas</a></li>
+                <li><a href="https://www.akirabodyart.com/958-oferta-maquinas-de-bobinas.html">Oferta Máquinas de Bobinas</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/outlet-tattoo/oferta-agujas-grips-tips.html">Oferta Agujas-Grips-Tips</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/outlet-tattoo/oferta-fuentes-cables.html">Oferta Fuentes-Cables</a></li>
+                <li><a href="https://www.akirabodyart.com/tattoo/outlet-tattoo/ofertas-variadas.html">Ofertas Variadas</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-top">Piercing<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega" id="mega-piercing">
+          <div class="mega-cols">
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/825-titanio-rosca-interna.html">AKA - Fine Jewelry</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/506-titanio-rosca-interna.html">BÁSICO</a></li>
+                <li><a href="https://www.akirabodyart.com/925-oro-anodizado.html">ORO ANODIZADO</a></li>
+                <li><a href="https://www.akirabodyart.com/828-lengua.html">LENGUA</a></li>
+                <li><a href="https://www.akirabodyart.com/830-rosca-interna-titanio-cejas.html">CEJAS</a></li>
+                <li><a href="https://www.akirabodyart.com/832-rosca-interna-titanio-ombligo.html">OMBLIGO</a></li>
+                <li><a href="https://www.akirabodyart.com/834-rosca-interna-titanio-oreja.html">OREJA</a></li>
+                <li><a href="https://www.akirabodyart.com/836-rosca-interna-titanio-labio.html">LABIO</a></li>
+                <li><a href="https://www.akirabodyart.com/885-nariz.html">NARIZ</a></li>
+                <li><a href="https://www.akirabodyart.com/838-rosca-interna-titanio-pezon.html">PEZÓN</a></li>
+                <li><a href="https://www.akirabodyart.com/852-surface.html">SURFACE</a></li>
+                <li><a href="https://www.akirabodyart.com/840-repuestos.html">REPUESTOS</a></li>
+                <li><a href="https://www.akirabodyart.com/993-push-in.html">PUSH PIN</a></li>
+                <li><a href="https://www.akirabodyart.com/1014-charm.html">CHARM</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/990-oro-14k.html">Oro 14K</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/991-oro-14k.html">Oro 14K</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/titanio.html">Titanio</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/titanio/titanio-crudo.html">Titanio Crudo</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/titanio/titanio-color.html">Titanio Color</a></li>
+                <li><a href="https://www.akirabodyart.com/32-titanio-negro.html">Titanio Negro</a></li>
+                <li><a href="https://www.akirabodyart.com/46-titanio-anodizado-oro.html">Titanio Oro</a></li>
+                <li><a href="https://www.akirabodyart.com/768-titanio-esteril.html">Titanio Estéril</a></li>
+                <li><a href="https://www.akirabodyart.com/850-titanio-coleccion.html">Titanio Colección</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/acero-316l.html">Acero 316L</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/acero-316l/linea-basica.html">Línea Básica</a></li>
+                <li><a href="https://www.akirabodyart.com/30-acero-negro.html">Acero Negro</a></li>
+                <li><a href="https://www.akirabodyart.com/34-negro-mate.html">Negro Mate</a></li>
+                <li><a href="https://www.akirabodyart.com/44-acero-anodizado-oro.html">Acero Anodizado Oro</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/acero-316l/rosca-interna.html">Rosca Interna</a></li>
+                <li><a href="https://www.akirabodyart.com/766-acero-esteril.html">Acero Estéril</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/coleccion-acero.html">Colección Acero</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/coleccion-acero/lengua.html">Lengua</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/coleccion-acero/ceja.html">Ceja</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/coleccion-acero/ombligo.html">Ombligo</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/coleccion-acero/oreja.html">Oreja</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/coleccion-acero/labio.html">Labio</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/coleccion-acero/nariz.html">Nariz</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/coleccion-acero/pezon.html">Pezón</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/ptfe-bioplast.html">PTFE-BioPlast</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/ptfe-bioplast/ptfe-bioplast.html">PTFE-BioPlast</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/microdermal.html">Microdermal</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/982-microdermal-09.html">Microdermal 0,9</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/microdermal/microdermal.html">Microdermal 1,2</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/microdermal/repuestos.html">Repuestos 1,2</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/septum.html">Septum</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/septum/septum.html">Acero</a></li>
+                <li><a href="https://www.akirabodyart.com/801-acero-negro.html">Acero Negro</a></li>
+                <li><a href="https://www.akirabodyart.com/803-acero-oro.html">Acero Oro</a></li>
+                <li><a href="https://www.akirabodyart.com/805-titanio.html">Titanio</a></li>
+                <li><a href="https://www.akirabodyart.com/807-rodio.html">Rodio</a></li>
+                <li><a href="https://www.akirabodyart.com/809-bronce.html">Bronce</a></li>
+                <li><a href="https://www.akirabodyart.com/811-falsos.html">Falsos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/bananas-ombligo.html">Bananas ombligo</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/bananas-ombligo/bananas-ombligo.html">Bananas ombligo</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/dilataciones.html">Dilataciones</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/dilataciones/acero.html">Acero</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/dilataciones/hueso.html">Hueso</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/dilataciones/pyrex.html">Pyrex</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/dilataciones/natural.html">Natural</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/dilataciones/falso-dilatador.html">Falso Dilatador</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/dilataciones/acrilico.html">Acrílico</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/dilataciones/silicona.html">Silicona</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/dilataciones/bronce.html">Bronce</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/joyeria-etnica.html">Joyeria Etnica</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/joyeria-etnica/pendientes.html">Pendientes</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/joyeria-etnica/dilataciones.html">Dilataciones</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/joyeria-etnica/pesos.html">Pesos</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/joyeria-etnica/piercing-etnico.html">Piercing Etnico</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/acrilico-uv.html">Acrílico-UV</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/acrilico-uv/lengua.html">Lengua</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/acrilico-uv/ombligo.html">Ombligo</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/acrilico-uv/ceja.html">Ceja</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/acrilico-uv/labio.html">Labio</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/repuestos.html">Repuestos</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/repuestos/acero.html">Acero</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/repuestos/negro-oro-y-titanio.html">Negro, Oro y Titanio</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/repuestos/uv-12.html">UV 1.2</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/repuestos/uv-16.html">UV 1.6</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/kits-de-inicio.html">KITs de Inicio</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/kits-de-inicio/kits-de-inicio.html">KITs de Inicio</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/body-mod.html">Body-Mod</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/body-mod/implantes.html">Implantes</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/body-mod/suspension.html">Suspensión</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/expositores.html">Expositores</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/expositores/expositores.html">Expositores</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/herramientas.html">Herramientas</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/herramientas/herramientas.html">Herramientas</a></li>
+                <li><a href="https://www.akirabodyart.com/1006-herramientas-desechables.html">Herramientas Desechables</a></li>
+                <li><a href="https://www.akirabodyart.com/1008-marcadores.html">Marcadores</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/sanitario-piercing.html">Sanitario Piercing</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/piercing/sanitario-piercing/cateter-punch.html">Perforación</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/sanitario-piercing/guantes.html">Guantes</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/sanitario-piercing/limpieza-jabones.html">Limpieza - Jabones</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/sanitario-piercing/desinfeccion.html">Desinfección</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/sanitario-piercing/esterilizacion.html">Esterilización</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/sanitario-piercing/proteccion.html">Protección</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/sanitario-piercing/cuidados-piercing.html">Cuidados Piercing</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/sanitario-piercing/gestion-de-residuos.html">Gestión de Residuos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/874-mobiliario.html">Mobiliario</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/875-sin-nombre.html">Camillas</a></li>
+                <li><a href="https://www.akirabodyart.com/877-mesas.html">Mesas</a></li>
+                <li><a href="https://www.akirabodyart.com/879-taburetes.html">Taburetes</a></li>
+                <li><a href="https://www.akirabodyart.com/881-iluminacion.html">Iluminación</a></li>
+                <li><a href="https://www.akirabodyart.com/883-lavamanos.html">Lavamanos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/piercing/packs.html">Ofertas Piercing</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/748-coleccion-acero.html">Colección Acero</a></li>
+                <li><a href="https://www.akirabodyart.com/750-ombligo.html">Ombligo</a></li>
+                <li><a href="https://www.akirabodyart.com/752-oreja.html">Oreja</a></li>
+                <li><a href="https://www.akirabodyart.com/754-dilataciones.html">Dilataciones</a></li>
+                <li><a href="https://www.akirabodyart.com/piercing/packs/packs.html">Más Ofertas</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/939-anodizador.html">Anodizador</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/940-anodizador.html">Anodizador</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-top">Micropigmentación<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="mega" id="mega-micro">
+          <div class="mega-cols">
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/agujas-de-cartuchos.html">Agujas Micro</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/agujas-de-cartuchos/cartuchos-universales.html">AKIRA-Micro</a></li>
+                <li><a href="https://www.akirabodyart.com/1029-saiko.html">SAIKOu</a></li>
+                <li><a href="https://www.akirabodyart.com/978-fineline.html">FINELINE</a></li>
+                <li><a href="https://www.akirabodyart.com/907-bishop-pmu.html">BISHOP - PMU</a></li>
+                <li><a href="https://www.akirabodyart.com/901-versus.html">VERSUS</a></li>
+                <li><a href="https://www.akirabodyart.com/764-vertix-pico.html">Vertix PICO</a></li>
+                <li><a href="https://www.akirabodyart.com/717-vertix-nano.html">Vertix NANO</a></li>
+                <li><a href="https://www.akirabodyart.com/695-kwadron-micro.html">KWADRON-Micro</a></li>
+                <li><a href="https://www.akirabodyart.com/691-ez-micro.html">EZ-Micro</a></li>
+                <li><a href="https://www.akirabodyart.com/693-cheyenne.html">CHEYENNE</a></li>
+                <li><a href="https://www.akirabodyart.com/697-kwadron-classic.html">KWADRON-Classic</a></li>
+                <li><a href="https://www.akirabodyart.com/933-dermapen.html">DERMAPEN</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/equipos-micro.html">Equipos Micro</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/719-wireless.html">Wireless</a></li>
+                <li><a href="https://www.akirabodyart.com/689-microbeau.html">MICROBEAU</a></li>
+                <li><a href="https://www.akirabodyart.com/962-ava.html">AVA</a></li>
+                <li><a href="https://www.akirabodyart.com/972-biomaser-wireless.html">BIOMASER WIRELESS</a></li>
+                <li><a href="https://www.akirabodyart.com/964-ambition.html">AMBITION</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/equipos-micro/cheyenne.html">CHEYENNE</a></li>
+                <li><a href="https://www.akirabodyart.com/796-mast.html">MAST</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/equipos-micro/biomaser.html">BIOMASER</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/equipos-micro/maquinas-micro.html">Dermógrafos Económicos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/fuentes-de-alimentacion.html">Fuentes y Baterías</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/715-wireless.html">WIRELESS</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/fuentes-de-alimentacion/otros-fabricantes.html">ECONÓMICAS</a></li>
+                <li><a href="https://www.akirabodyart.com/709-nemesis.html">NEMESIS</a></li>
+                <li><a href="https://www.akirabodyart.com/705-critical.html">CRITICAL</a></li>
+                <li><a href="https://www.akirabodyart.com/707-musotoku.html">MUSOTOKU</a></li>
+                <li><a href="https://www.akirabodyart.com/711-five-moths.html">FIVE MOTHS</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/fuentes-de-alimentacion/cheyenne.html">CHEYENNE</a></li>
+                <li><a href="https://www.akirabodyart.com/713-fk-irons.html">FK IRONS</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/elementos-equipos.html">Elementos Equipos</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/elementos-equipos/cables.html">Cables</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/elementos-equipos/pedales.html">Pedales</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/elementos-equipos/varios.html">Varios</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/microblading.html">Microblading</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/microblading/agujas-microblading.html">Agujas Microblading</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/microblading/herramientas-microblading.html">Herramientas Microblading</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/microblading/kit-desechables-microblading.html">Kit Desechables Microblading</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/accesorios.html">Accesorios Micro</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/accesorios/accesorios-dibujo.html">Accesorios Dibujo</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/accesorios/accesorios-maquinas.html">Accesorios Máquinas</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/accesorios/accesorios-tinta.html">Accesorios Tinta</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/accesorios/material-de-practicas.html">Material de Prácticas</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/accesorios/accesorios-varios.html">Accesorios Varios</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/accesorios/material-didactico.html">Material Didáctico</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/779-pigmentos-homologados-aemps.html">Pigmentos AEMPS</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/893-biotek.html">BIOTEK</a></li>
+                <li><a href="https://www.akirabodyart.com/917-doreme.html">DOREME</a></li>
+                <li><a href="https://www.akirabodyart.com/997-viking.html">VIKING</a></li>
+                <li><a href="https://www.akirabodyart.com/999-eclipse.html">ECLIPSE</a></li>
+                <li><a href="https://www.akirabodyart.com/1001-electric-ink.html">ELECTRIC INK</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/780-pigmentos-no-homologados.html">Pigmentos Simuladores</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/1025-dynamic.html">Dynamic</a></li>
+                <li><a href="https://www.akirabodyart.com/966-hanafy.html">Hanafy</a></li>
+                <li><a href="https://www.akirabodyart.com/968-hanafy-kits.html">Hanafy - SET</a></li>
+                <li><a href="https://www.akirabodyart.com/1035-etalon-mix.html">Etalon Mix</a></li>
+                <li><a href="https://www.akirabodyart.com/1012-tina-davies-set.html">Tina Davies - SET</a></li>
+                <li><a href="https://www.akirabodyart.com/725-permablend-kits.html">PermaBlend - SET</a></li>
+                <li><a href="https://www.akirabodyart.com/727-permablend-cejas.html">PermaBlend - Cejas</a></li>
+                <li><a href="https://www.akirabodyart.com/729-permablend-ojos.html">PermaBlend - Ojos</a></li>
+                <li><a href="https://www.akirabodyart.com/731-permablend-labios.html">PermaBlend - Labios</a></li>
+                <li><a href="https://www.akirabodyart.com/735-permablend-areola.html">PermaBlend - Areola</a></li>
+                <li><a href="https://www.akirabodyart.com/737-permablend-camuflaje.html">PermaBlend - Camuflaje</a></li>
+                <li><a href="https://www.akirabodyart.com/739-permablend-correctores.html">PermaBlend - Correctores</a></li>
+                <li><a href="https://www.akirabodyart.com/760-nuance.html">Nuance</a></li>
+                <li><a href="https://www.akirabodyart.com/942-permablend-capilar.html">PermaBlend - Capilar</a></li>
+                <li><a href="https://www.akirabodyart.com/813-5pm.html">5PM Shadow</a></li>
+                <li><a href="https://www.akirabodyart.com/984-mfine.html">MFINE</a></li>
+                <li><a href="https://www.akirabodyart.com/995-folicule.html">Folicule</a></li>
+                <li><a href="https://www.akirabodyart.com/783-diluyentes.html">Diluyentes</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/material-sanitario.html">Sanitario Micro</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/material-sanitario/guantes.html">Guantes</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/material-sanitario/limpieza-jabones.html">Limpieza (jabones)</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/material-sanitario/desinfeccion.html">Desinfección</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/material-sanitario/proteccion-fundas.html">Protección (fundas)</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/material-sanitario/preparacion-de-la-micro.html">Preparación de la Micro</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/material-sanitario/cuidados-posteriores.html">Cuidados MICRO</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/material-sanitario/gestion-de-residuos.html">Gestión de residuos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/mobiliario.html">Mobiliario</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/mobiliario/muebles.html">Camillas</a></li>
+                <li><a href="https://www.akirabodyart.com/864-mesas.html">Mesas</a></li>
+                <li><a href="https://www.akirabodyart.com/866-taburetes.html">Taburetes</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/mobiliario/iluminacion.html">Iluminación</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/mobiliario/rotulos-luminosos.html">Rótulos luminosos</a></li>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/mobiliario/lavamanos.html">Lavamanos</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/micro-pigmentacion/kits-de-inicio-a-medida.html">Kits de Micro</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/micro-pigmentacion/kits-de-inicio-a-medida/kits-de-inicio-a-medida.html">Kits de Micro</a></li>
+                <li><a href="https://www.akirabodyart.com/1033-kits-de-inicio-instituto.html">Kits de Inicio INSTITUTO</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <a class="mega-col-title" href="https://www.akirabodyart.com/955-sin-nombre.html">Outlet Micro</a>
+              <ul>
+                <li><a href="https://www.akirabodyart.com/956-outlet-micro.html">Outlet Micro</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-top">Cursos<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="nav-flat">
+          <a href="https://www.akirabodyart.com/cursos/higienico-sanitario.html">Higiénico-Sanitario</a>
+          <a href="https://www.akirabodyart.com/cursos/tatuaje.html">Tatuaje</a>
+          <a href="https://www.akirabodyart.com/798-master-class-de-tattoo.html">Master-Class de Tattoo</a>
+          <a href="https://www.akirabodyart.com/cursos/micro-pigmentacion.html">Micro-Pigmentación</a>
+          <a href="https://www.akirabodyart.com/cursos/piercing.html">Piercing</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#" class="nav-top">+ Info<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="nav-flat">
+          <a href="https://www.akirabodyart.com/-info/servicios-externos.html">Servicios externos</a>
+          <a href="https://www.akirabodyart.com/-info/certificados-de-productos.html">Certificados y Documentos</a>
+          <a href="http://www.akirabodyart.com/4-quienes-somos.html">Quienes somos</a>
+          <a href="https://www.akirabodyart.com/-info/videos.html">Videos TATTOO</a>
+          <a href="https://www.akirabodyart.com/741-videos-micro.html">Videos MICRO</a>
+        </div>
+      </div>
+      <a href="#novedades-tattoo">Novedades</a>
       <a href="#marcas">Marcas</a>
-      <a href="#">Ofertas</a>
-      <a href="#">Novedades</a>
-      <a href="#">Blog</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="nav-actions">
@@ -330,6 +980,278 @@
   </div>
 </section>
 
+<section class="novedades" id="novedades-tattoo">
+  <div class="wrap">
+    <div class="novedades-head">
+      <h2>Novedades Tattoo</h2>
+      <a class="ver-todos" href="https://www.akirabodyart.com/156-novedades-tattoo.html">Ver todos <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="product-row">
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29949/0/0/1/1/estacion-trabajo-tattoo-%E2%80%93-full-pack.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29949.jpg&amp;sw=480&amp;sh=480" alt="Estación trabajo Tattoo – Full Pack" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: STATION15</span>
+        <h3><a href="https://www.akirabodyart.com/product/29949/0/0/1/1/estacion-trabajo-tattoo-%E2%80%93-full-pack.htm">Estación trabajo Tattoo – Full Pack</a></h3>
+        <p class="product-desc">Estación de trabajo hecha de chapa de acero, móvi...</p>
+        <span class="product-price">275,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=29949&amp;ps=1&amp;c=156&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29897/0/0/1/1/soporte-maquinas-tipo-pen.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29897.jpg&amp;sw=480&amp;sh=480" alt="Soporte máquinas tipo PEN" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: SOPC</span>
+        <h3><a href="https://www.akirabodyart.com/product/29897/0/0/1/1/soporte-maquinas-tipo-pen.htm">Soporte máquinas tipo PEN</a></h3>
+        <p class="product-desc">Soporte desechable para máquinas de cartuchos. Co...</p>
+        <span class="product-price">2,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=29897&amp;ps=1&amp;c=156&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30218/0/0/1/1/bateria-de-2200mah-ncr1850b.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30218.jpg&amp;sw=480&amp;sh=480" alt="Batería de 2200mAh (NCR1850B)" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: BTWC-1</span>
+        <h3><a href="https://www.akirabodyart.com/product/30218/0/0/1/1/bateria-de-2200mah-ncr1850b.htm">Batería de 2200mAh (NCR1850B)</a></h3>
+        <p class="product-desc">Batería de 2200mAh (NCR1850B) para maquinas rotat...</p>
+        <span class="product-price">Desde 9,00 €</span>
+        <a class="btn btn-line product-cta" href="https://www.akirabodyart.com/product/30218/0/0/1/1/bateria-de-2200mah-ncr1850b.htm">+ Info</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30212/0/0/1/1/balm-tattoo-the-shots-vegana.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30212.jpg&amp;sw=480&amp;sh=480" alt="BALM Tattoo THE SHOTS - Vegana" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: BALMSH-FV</span>
+        <h3><a href="https://www.akirabodyart.com/product/30212/0/0/1/1/balm-tattoo-the-shots-vegana.htm">BALM Tattoo THE SHOTS - Vegana</a></h3>
+        <p class="product-desc">Bálsamo Vegano sin ingredientes de origen animal,...</p>
+        <span class="product-price">175,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30212&amp;ps=1&amp;c=296&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30211/0/0/1/1/balm-tattoo-the-shots-dragons-blood.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30211.jpg&amp;sw=480&amp;sh=480" alt="BALM Tattoo THE SHOTS - Dragon´s Blood" loading="lazy">
+          <span class="tag-stock">Sin stock</span>
+        </a>
+        <span class="product-ref">Ref.: BALMSH-BD</span>
+        <h3><a href="https://www.akirabodyart.com/product/30211/0/0/1/1/balm-tattoo-the-shots-dragons-blood.htm">BALM Tattoo THE SHOTS - Dragon´s Blood</a></h3>
+        <p class="product-desc">Bálsamo Dragon´s Blood 100% Vegano y sin derivado...</p>
+        <span class="product-price">175,00 €</span>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29948/0/0/1/1/pack-rotuladores-12-colores.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29948.jpg&amp;sw=480&amp;sh=480" alt="Pack Rotuladores - 12 Colores" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: ROT-12</span>
+        <h3><a href="https://www.akirabodyart.com/product/29948/0/0/1/1/pack-rotuladores-12-colores.htm">Pack Rotuladores - 12 Colores</a></h3>
+        <p class="product-desc">Pack de 12 rotuladores. Una punta. Diferentes col...</p>
+        <span class="product-price">6,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=29948&amp;ps=1&amp;c=676&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30207/0/0/1/1/a-pound-of-flesh-mini-animals-pez.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30207.jpg&amp;sw=480&amp;sh=480" alt="A Pound of Flesh Mini Animals - Pez" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: PO-FISH</span>
+        <h3><a href="https://www.akirabodyart.com/product/30207/0/0/1/1/a-pound-of-flesh-mini-animals-pez.htm">A Pound of Flesh Mini Animals - Pez</a></h3>
+        <p class="product-desc">Figura de Pez fabricada en Silicona y Caucho para...</p>
+        <span class="product-price">19,90 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30207&amp;ps=1&amp;c=156&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30205/0/0/1/1/a-pound-of-flesh-mini-animals-pez-globo.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30205.jpg&amp;sw=480&amp;sh=480" alt="A Pound of Flesh Mini Animals - Pez Globo" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: PO-BLOW</span>
+        <h3><a href="https://www.akirabodyart.com/product/30205/0/0/1/1/a-pound-of-flesh-mini-animals-pez-globo.htm">A Pound of Flesh Mini Animals - Pez Globo</a></h3>
+        <p class="product-desc">Figura de Pez Globo fabricada en Silicona y Cauch...</p>
+        <span class="product-price">19,90 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30205&amp;ps=1&amp;c=156&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="novedades" id="novedades-micro">
+  <div class="wrap">
+    <div class="novedades-head">
+      <h2>Novedades Micropigmentación</h2>
+      <a class="ver-todos" href="https://www.akirabodyart.com/list/639/0/2/1/1/novedades-micropigmentacion.htm">Ver todos <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="product-row">
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29897/0/0/1/1/soporte-maquinas-tipo-pen.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29897.jpg&amp;sw=480&amp;sh=480" alt="Soporte máquinas tipo PEN" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: SOPC</span>
+        <h3><a href="https://www.akirabodyart.com/product/29897/0/0/1/1/soporte-maquinas-tipo-pen.htm">Soporte máquinas tipo PEN</a></h3>
+        <p class="product-desc">Soporte desechable para máquinas de cartuchos. Co...</p>
+        <span class="product-price">2,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=29897&amp;ps=1&amp;c=156&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30227/0/0/1/1/areola-2-irina-maximova-practicas.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30227.jpg&amp;sw=480&amp;sh=480" alt="AREOLA 2 - Irina Maximova - Prácticas" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: HA-ARE-N2</span>
+        <h3><a href="https://www.akirabodyart.com/product/30227/0/0/1/1/areola-2-irina-maximova-practicas.htm">AREOLA 2 - Irina Maximova - Prácticas</a></h3>
+        <p class="product-desc">Pigmento Hanafy by Carolina Alfonzo para técnicas...</p>
+        <span class="product-price">50,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30227&amp;ps=1&amp;c=639&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30225/0/0/1/1/areola-4-irina-maximova-practicas.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30225.jpg&amp;sw=480&amp;sh=480" alt="AREOLA 4 - Irina Maximova - Prácticas" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: HA-ARE-N4</span>
+        <h3><a href="https://www.akirabodyart.com/product/30225/0/0/1/1/areola-4-irina-maximova-practicas.htm">AREOLA 4 - Irina Maximova - Prácticas</a></h3>
+        <p class="product-desc">Pigmento Hanafy by Carolina Alfonzo para técnicas...</p>
+        <span class="product-price">50,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30225&amp;ps=1&amp;c=967&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30224/0/0/1/1/areola-5-irina-maximova-practicas.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30224.jpg&amp;sw=480&amp;sh=480" alt="AREOLA 5 - Irina Maximova - Prácticas" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: HA-ARE-N5</span>
+        <h3><a href="https://www.akirabodyart.com/product/30224/0/0/1/1/areola-5-irina-maximova-practicas.htm">AREOLA 5 - Irina Maximova - Prácticas</a></h3>
+        <p class="product-desc">Pigmento Hanafy by Carolina Alfonzo para técnicas...</p>
+        <span class="product-price">50,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30224&amp;ps=1&amp;c=639&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30223/0/0/1/1/caracas-carolina-alfonzo-practicas.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30223.jpg&amp;sw=480&amp;sh=480" alt="CARACAS - Carolina Alfonzo - Prácticas" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: HA-DLIPS-N1</span>
+        <h3><a href="https://www.akirabodyart.com/product/30223/0/0/1/1/caracas-carolina-alfonzo-practicas.htm">CARACAS - Carolina Alfonzo - Prácticas</a></h3>
+        <p class="product-desc">Pigmento Hanafy by Carolina Alfonzo para técnicas...</p>
+        <span class="product-price">45,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30223&amp;ps=1&amp;c=639&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30222/0/0/1/1/medellin-carolina-alfonzo-practicas.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30222.jpg&amp;sw=480&amp;sh=480" alt="MEDELLIN - Carolina Alfonzo - Prácticas" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: HA-DLIPS-N2</span>
+        <h3><a href="https://www.akirabodyart.com/product/30222/0/0/1/1/medellin-carolina-alfonzo-practicas.htm">MEDELLIN - Carolina Alfonzo - Prácticas</a></h3>
+        <p class="product-desc">Pigmento Hanafy by Carolina Alfonzo para técnicas...</p>
+        <span class="product-price">45,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30222&amp;ps=1&amp;c=639&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30221/0/0/1/1/barcelona-carolina-alfonzo-practicas.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30221.jpg&amp;sw=480&amp;sh=480" alt="BARCELONA - Carolina Alfonzo - Prácticas" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: HA-DLIPS-N3</span>
+        <h3><a href="https://www.akirabodyart.com/product/30221/0/0/1/1/barcelona-carolina-alfonzo-practicas.htm">BARCELONA - Carolina Alfonzo - Prácticas</a></h3>
+        <p class="product-desc">Pigmento Hanafy by Carolina Alfonzo para técnicas...</p>
+        <span class="product-price">45,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30221&amp;ps=1&amp;c=639&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30220/0/0/1/1/miami-carolina-alfonzo-practicas.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30220.jpg&amp;sw=480&amp;sh=480" alt="MIAMI - Carolina Alfonzo - Prácticas" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: HA-DLIPS-N4</span>
+        <h3><a href="https://www.akirabodyart.com/product/30220/0/0/1/1/miami-carolina-alfonzo-practicas.htm">MIAMI - Carolina Alfonzo - Prácticas</a></h3>
+        <p class="product-desc">Pigmento Hanafy by Carolina Alfonzo para técnicas...</p>
+        <span class="product-price">45,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30220&amp;ps=1&amp;c=639&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="novedades" id="novedades-piercing">
+  <div class="wrap">
+    <div class="novedades-head">
+      <h2>Novedades Piercing</h2>
+      <a class="ver-todos" href="https://www.akirabodyart.com/12-novedades-piercing.html">Ver todos <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="product-row">
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29949/0/0/1/1/estacion-trabajo-tattoo-%E2%80%93-full-pack.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29949.jpg&amp;sw=480&amp;sh=480" alt="Estación trabajo Tattoo – Full Pack" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: STATION15</span>
+        <h3><a href="https://www.akirabodyart.com/product/29949/0/0/1/1/estacion-trabajo-tattoo-%E2%80%93-full-pack.htm">Estación trabajo Tattoo – Full Pack</a></h3>
+        <p class="product-desc">Estación de trabajo hecha de chapa de acero, móvi...</p>
+        <span class="product-price">275,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=29949&amp;ps=1&amp;c=156&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29989/0/0/1/1/rollo-taper-de-colores.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29989.jpg&amp;sw=480&amp;sh=480" alt="Rollo Taper de colores" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: BTO</span>
+        <h3><a href="https://www.akirabodyart.com/product/29989/0/0/1/1/rollo-taper-de-colores.htm">Rollo Taper de colores</a></h3>
+        <p class="product-desc">Pack de 6 rollos tipo cinta de carrocero. Posibil...</p>
+        <span class="product-price">Desde 9,00 €</span>
+        <a class="btn btn-line product-cta" href="https://www.akirabodyart.com/product/29989/0/0/1/1/rollo-taper-de-colores.htm">+ Info</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30127/0/0/1/1/marcador-sharpie.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30127.jpg&amp;sw=480&amp;sh=480" alt="Marcador SHARPIE" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: SHARPIE1</span>
+        <h3><a href="https://www.akirabodyart.com/product/30127/0/0/1/1/marcador-sharpie.htm">Marcador SHARPIE</a></h3>
+        <p class="product-desc">Rotulador Sharpie.</p>
+        <span class="product-price">Desde 1,60 €</span>
+        <a class="btn btn-line product-cta" href="https://www.akirabodyart.com/product/30127/0/0/1/1/marcador-sharpie.htm">+ Info</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30101/0/0/1/1/repuesto-helice-joyas-push-pin.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30101.jpg&amp;sw=480&amp;sh=480" alt="Repuesto Helice Joyas - PUSH PIN" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: RJP12</span>
+        <h3><a href="https://www.akirabodyart.com/product/30101/0/0/1/1/repuesto-helice-joyas-push-pin.htm">Repuesto Helice Joyas - PUSH PIN</a></h3>
+        <p class="product-desc">Repuesto PUSH PIN circonita grado 5A. Fabricado e...</p>
+        <a class="btn btn-line product-cta" href="https://www.akirabodyart.com/product/30101/0/0/1/1/repuesto-helice-joyas-push-pin.htm">+ Info</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/30074/0/0/1/1/solidificador-de-liquidos-obake.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_30074.jpg&amp;sw=480&amp;sh=480" alt="Solidificador de Líquidos - OBAKE" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: OB-SOLI</span>
+        <h3><a href="https://www.akirabodyart.com/product/30074/0/0/1/1/solidificador-de-liquidos-obake.htm">Solidificador de Líquidos - OBAKE</a></h3>
+        <p class="product-desc">Solidificador Magic Powder para líquidos fabricad...</p>
+        <span class="product-price">15,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=30074&amp;ps=1&amp;c=219&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29787/0/0/1/1/lampara-led-media-luna-regulable.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29787.jpg&amp;sw=480&amp;sh=480" alt="Lámpara LED Media Luna Regulable" loading="lazy">
+          <span class="tag-stock">Sin stock</span>
+        </a>
+        <span class="product-ref">Ref.: LAMP11</span>
+        <h3><a href="https://www.akirabodyart.com/product/29787/0/0/1/1/lampara-led-media-luna-regulable.htm">Lámpara LED Media Luna Regulable</a></h3>
+        <p class="product-desc">Lámpara LED con diseño en forma de media luna, pe...</p>
+        <span class="product-price">110,00 €</span>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29981/0/0/1/1/toallita-de-clorhexidina-monodosis.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29981.jpg&amp;sw=480&amp;sh=480" alt="Toallita de clorhexidina monodosis" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: CLORITAS</span>
+        <h3><a href="https://www.akirabodyart.com/product/29981/0/0/1/1/toallita-de-clorhexidina-monodosis.htm">Toallita de clorhexidina monodosis</a></h3>
+        <p class="product-desc">Toallitas impregnadas con solución alcohólica de ...</p>
+        <span class="product-price">2,50 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=29981&amp;ps=1&amp;c=452&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+      <article class="product-card">
+        <a class="product-thumb" href="https://www.akirabodyart.com/product/29792/0/0/1/1/mesa-de-trabajo-elite-tray-.htm">
+          <img src="http://www.akirabodyart.com/tools/thumbs.aspx?p=//images/product/1/large/pl_1_1_29792.jpg&amp;sw=480&amp;sh=480" alt="Mesa de trabajo Elite Tray" loading="lazy">
+        </a>
+        <span class="product-ref">Ref.: STATION14</span>
+        <h3><a href="https://www.akirabodyart.com/product/29792/0/0/1/1/mesa-de-trabajo-elite-tray-.htm">Mesa de trabajo Elite Tray</a></h3>
+        <p class="product-desc">Mesa de trabajo profesional Elite Tray ajustable ...</p>
+        <span class="product-price">100,00 €</span>
+        <a class="btn btn-solid product-cta" href="https://www.akirabodyart.com/action.aspx?a=3&amp;p=29792&amp;ps=1&amp;c=865&amp;q=1&amp;at=0">Comprar</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="brand-strip" id="marcas">
   <div class="wrap">
     <span class="eyebrow">Marcas líderes</span>
@@ -395,21 +1317,26 @@
   </div>
 </section>
 
+<p class="price-note wrap">Todos los precios mostrados en la web son sin impuestos (sin IVA)</p>
+
 <section class="newsletter" id="contacto">
   <div class="wrap news-inner">
     <div class="news-copy">
-      <span class="eyebrow">Suscríbete y obtén novedades</span>
-      <p>Ofertas exclusivas, lanzamientos y contenido para tatuadores.</p>
+      <span class="eyebrow">Suscríbete a nuestro boletín de noticias</span>
+      <p>Novedades, lanzamientos y ofertas para tatuadores, piercers y micropigmentadores.</p>
     </div>
-    <form class="news-form" onsubmit="event.preventDefault();">
-      <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-      <button type="submit">Suscribirme</button>
+    <form class="news-form-wrap" onsubmit="event.preventDefault();">
+      <div class="news-form">
+        <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+        <button type="submit">Suscribirme</button>
+      </div>
+      <label class="legal-check"><input type="checkbox" required>He leído y acepto la Política de Privacidad</label>
     </form>
     <div class="news-social">
       <span>Síguenos</span>
-      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M14 9h3V5h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1z"/></svg></a>
-      <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></a>
+      <a href="https://www.instagram.com/akirabodyart/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="https://www.facebook.com/raulakira.bodyart" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M14 9h3V5h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1z"/></svg></a>
+      <a href="https://www.youtube.com/channel/UCvoCsVuRnylGoGixx6rDRoA" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></a>
     </div>
   </div>
 </section>
@@ -420,27 +1347,34 @@
       <div class="footer-brand">
         <a href="#" class="logo">AKIRA<span class="sub">Body Art Supply</span></a>
         <p style="margin-top:16px;">Distribuidor de material de tatuaje, piercing y micropigmentación para profesionales de toda España y la Unión Europea.</p>
+        <div class="footer-social">
+          <a href="https://www.youtube.com/channel/UCvoCsVuRnylGoGixx6rDRoA" aria-label="Youtube"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></a>
+          <a href="https://www.instagram.com/akirabodyart/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://www.facebook.com/raulakira.bodyart" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M14 9h3V5h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1z"/></svg></a>
+        </div>
       </div>
       <div class="footer-col">
         <h5>Información</h5>
-        <a href="#">Sobre nosotros</a>
-        <a href="#">Envíos y pagos</a>
-        <a href="#">Cambios y devoluciones</a>
-        <a href="#">Preguntas frecuentes</a>
+        <a href="https://www.akirabodyart.com/4-quienes-somos.html">Quiénes Somos</a>
+        <a href="https://www.akirabodyart.com/33-donde-estamos.html">Dónde estamos</a>
+        <a href="https://www.akirabodyart.com/7-condiciones-generales.html">Condiciones Generales</a>
+        <a href="https://www.akirabodyart.com/9-gastos-de-envio.html">Gastos de Envío</a>
       </div>
       <div class="footer-col">
         <h5>Mi Cuenta</h5>
-        <a href="#">Iniciar sesión</a>
-        <a href="#">Mis pedidos</a>
-        <a href="#">Mis favoritos</a>
-        <a href="#">Crear cuenta</a>
+        <a href="http://www.akirabodyart.com/customer_zone.aspx">Cuenta</a>
+        <a href="http://www.akirabodyart.com/customer_order.aspx">Pedidos</a>
+        <a href="http://www.akirabodyart.com/customer_signin.aspx?action=update">Datos</a>
+        <a href="http://www.akirabodyart.com/contact.aspx">Contacta</a>
       </div>
       <div class="footer-col">
-        <h5>Contacto</h5>
-        <a href="#">+34 913 765 200</a>
-        <a href="#">akirabodyart@akirabodyart.com</a>
-        <a href="#">Lunes a Viernes de 9 a 18h</a>
-        <a href="#">Certificado ISO 9001:2015</a>
+        <h5>Legal y Contacto</h5>
+        <a href="tel:+34913765200">+34 913 765 200</a>
+        <a href="mailto:akirabodyart@akirabodyart.com">akirabodyart@akirabodyart.com</a>
+        <a href="https://www.akirabodyart.com/content/250/21/435/1/1/certificado-iso-90012015-.htm">Certificado ISO 9001:2015</a>
+        <a href="https://www.akirabodyart.com/19-politica-de-privacidad.html">Política de Privacidad</a>
+        <a href="https://www.akirabodyart.com/6-aviso-legal.html">Aviso Legal</a>
+        <a href="https://www.akirabodyart.com/131-politica-de-cookies.html">Política de Cookies</a>
       </div>
     </div>
     <div class="footer-bottom">
