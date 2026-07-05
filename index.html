@@ -55,7 +55,7 @@
   .nav-row{display:flex;align-items:center;justify-content:space-between;height:84px;}
   .logo{font-family:var(--serif);font-size:25px;font-weight:700;letter-spacing:0.01em;color:var(--white);line-height:1;}
   .logo .sub{display:block;font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.26em;color:var(--gray);text-transform:uppercase;margin-top:4px;}
-  nav.primary{display:flex;gap:34px;}
+  nav.primary{display:flex;gap:34px;height:100%;align-items:stretch;}
   nav.primary a{font-size:13px;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;color:var(--white);position:relative;padding-bottom:6px;display:flex;align-items:center;gap:4px;}
   nav.primary a.active{color:var(--gold-bright);}
   nav.primary a.active::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--gold);}
@@ -179,18 +179,22 @@
   .footer-social svg{width:14px;height:14px;stroke:var(--white);}
 
   /* mega menu */
-  .nav-item{position:relative;}
+  /* .nav-item spans the FULL header height (not just the link's text height) so the
+     hover/hit region reaches all the way down to the dropdown with zero dead strip
+     of header background in between — that dead strip was what closed the menu
+     early when moving the cursor from the trigger toward the panel. */
+  .nav-item{position:relative;display:flex;align-items:center;}
   .nav-top{cursor:pointer;}
-  .mega{position:fixed;top:132px;left:50%;transform:translateX(-50%);background:var(--bg-2);border:1px solid var(--line-dark);box-shadow:0 24px 60px rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .18s ease, top .18s ease;z-index:70;padding:32px;width:min(92vw,1180px);max-height:calc(100vh - 160px);overflow-y:auto;}
-  .nav-item:hover .mega{opacity:1;visibility:visible;top:124px;}
+  .mega{position:fixed;top:124px;left:50%;transform:translateX(-50%);background:var(--bg-2);border:1px solid var(--line-dark);box-shadow:0 24px 60px rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .16s ease, visibility 0s linear .16s;z-index:70;padding:32px;width:min(92vw,1180px);max-height:calc(100vh - 160px);overflow-y:auto;pointer-events:none;}
+  .nav-item:hover .mega,.nav-item.is-open .mega{opacity:1;visibility:visible;transition:opacity .16s ease;pointer-events:auto;}
   .mega-cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:26px 22px;}
   .mega-col-title{display:block;font-family:var(--sans);font-weight:800;color:var(--gold-bright);font-size:12px;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:12px;}
   .mega-col-title:hover{color:var(--white);}
   .mega-col ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
   .mega-col ul a{font-size:12px;color:var(--gray);line-height:1.4;}
   .mega-col ul a:hover{color:var(--white);}
-  .nav-flat{position:absolute;top:100%;left:0;transform:translateY(8px);background:var(--bg-2);border:1px solid var(--line-dark);box-shadow:0 24px 60px rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .18s ease, transform .18s ease;z-index:70;padding:14px 20px;min-width:220px;display:flex;flex-direction:column;gap:9px;}
-  .nav-item:hover .nav-flat{opacity:1;visibility:visible;transform:translateY(0);}
+  .nav-flat{position:absolute;top:100%;left:0;background:var(--bg-2);border:1px solid var(--line-dark);box-shadow:0 24px 60px rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .16s ease, visibility 0s linear .16s;z-index:70;padding:14px 20px;min-width:220px;display:flex;flex-direction:column;gap:9px;pointer-events:none;}
+  .nav-item:hover .nav-flat,.nav-item.is-open .nav-flat{opacity:1;visibility:visible;transition:opacity .16s ease;pointer-events:auto;}
   .nav-flat a{font-size:12.5px;color:var(--gray);text-transform:none;font-weight:500;letter-spacing:0;}
   .nav-flat a:hover{color:var(--white);}
   .nav-item:last-of-type .nav-flat,.nav-item:nth-last-of-type(2) .nav-flat{left:auto;right:0;}
@@ -1383,6 +1387,43 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  // Mega menu open/close is driven by a JS grace-period timer rather than pure CSS
+  // :hover — the dropdown panel is fixed-positioned away from its trigger, so a fast
+  // or diagonal mouse path can momentarily cross territory that belongs to neither
+  // element. A short close delay (cancelled on re-entry into either the trigger or
+  // the panel) absorbs that without ever feeling sluggish to close when truly done.
+  var CLOSE_DELAY = 300;
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    var dropdown = item.querySelector('.mega, .nav-flat');
+    var closeTimer = null;
+
+    function open(){
+      if(closeTimer){ clearTimeout(closeTimer); closeTimer = null; }
+      item.classList.add('is-open');
+    }
+    function scheduleClose(){
+      if(closeTimer) clearTimeout(closeTimer);
+      closeTimer = setTimeout(function(){ item.classList.remove('is-open'); closeTimer = null; }, CLOSE_DELAY);
+    }
+
+    item.addEventListener('mouseenter', open);
+    item.addEventListener('mouseleave', scheduleClose);
+    if(dropdown){
+      dropdown.addEventListener('mouseenter', open);
+      dropdown.addEventListener('mouseleave', scheduleClose);
+    }
+
+    // keyboard/focus support: open on focus-within, close when focus leaves entirely
+    item.addEventListener('focusin', open);
+    item.addEventListener('focusout', function(e){
+      if(!item.contains(e.relatedTarget)) scheduleClose();
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
