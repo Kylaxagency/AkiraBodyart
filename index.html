@@ -211,15 +211,30 @@
   .catalog-close{background:none;border:1px solid var(--line-dark);color:var(--white);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s ease;}
   .catalog-close:hover{border-color:var(--gold);}
   .catalog-close svg{width:16px;height:16px;stroke:currentColor;}
-  .catalog-head{display:flex;align-items:center;gap:24px;padding:56px 0 40px;flex-wrap:wrap;}
+  .catalog-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-top:28px;font-size:12px;color:var(--ink-soft);}
+  .catalog-crumbs a{color:var(--ink-soft);}
+  .catalog-crumbs a:hover{color:var(--gold);}
+  .catalog-crumbs span.current{color:var(--ink);font-weight:700;}
+  .catalog-crumbs span.sep{color:var(--line-light);}
+  .catalog-head{display:flex;align-items:center;gap:24px;padding:20px 0 40px;flex-wrap:wrap;}
   .catalog-thumb{width:104px;height:104px;background:#fff;border:1px solid var(--line-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .catalog-thumb img{width:100%;height:100%;object-fit:contain;}
   .catalog-thumb svg{width:44px;height:44px;stroke:var(--gold);}
   .catalog-crumb{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;}
   .catalog-head h1{font-family:var(--sans);font-weight:800;font-size:clamp(26px,3.4vw,38px);text-transform:uppercase;color:var(--ink);letter-spacing:-0.005em;}
-  .catalog-note{padding:24px 0 8px;font-size:12.5px;color:var(--ink-soft);border-top:1px solid var(--line-light);}
-  .catalog-empty{padding:60px 0 100px;text-align:center;color:var(--ink-soft);font-size:14px;}
-  .catalog-products{padding-bottom:110px;}
+  .catalog-layout{display:grid;grid-template-columns:230px 1fr;gap:44px;align-items:start;}
+  .catalog-sidebar-block{margin-bottom:38px;}
+  .catalog-sidebar-block h4{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:800;margin-bottom:16px;}
+  #catalog-siblings{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  #catalog-siblings a{font-size:13px;color:var(--ink);}
+  #catalog-siblings a:hover{color:var(--gold);}
+  #catalog-siblings a.active{color:var(--gold);font-weight:700;}
+  .catalog-sort{display:flex;flex-direction:column;gap:11px;}
+  .catalog-sort label{font-size:13px;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:8px;}
+  .catalog-sort input{accent-color:var(--gold);}
+  .catalog-note{padding:0 0 32px;font-size:12.5px;color:var(--ink-soft);}
+  .catalog-empty{padding:20px 0 100px;text-align:center;color:var(--ink-soft);font-size:14px;}
+  .catalog-main{padding-bottom:110px;min-width:0;}
 
   /* novedades / product cards */
   .novedades{padding:90px 0;background:var(--paper);border-bottom:1px solid var(--line-light);}
@@ -266,6 +281,7 @@
     .u-left{display:none;}
     .brand-row{gap:34px;}
     .product-row{grid-template-columns:repeat(2,1fr);}
+    .catalog-layout{grid-template-columns:1fr;}
   }
   @media (max-width:560px){
     .wrap{padding:0 20px;}
@@ -1414,6 +1430,7 @@
     </div>
   </div>
   <div class="wrap">
+    <nav class="catalog-crumbs" id="catalog-crumbs" aria-label="Ruta de navegación"></nav>
     <div class="catalog-head">
       <div class="catalog-thumb" id="catalog-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 15l4-4 4 4 4-6 4 6"/></svg></div>
       <div>
@@ -1421,9 +1438,28 @@
         <h1 id="catalog-title">Categoría</h1>
       </div>
     </div>
-    <p class="catalog-note">Estas son las novedades disponibles ahora mismo en esta sección. El catálogo completo de esta categoría se está incorporando a la tienda.</p>
   </div>
-  <div class="wrap catalog-products" id="catalog-products"></div>
+  <div class="wrap catalog-layout">
+    <aside class="catalog-sidebar">
+      <div class="catalog-sidebar-block">
+        <h4>Categorías relacionadas</h4>
+        <ul id="catalog-siblings"></ul>
+      </div>
+      <div class="catalog-sidebar-block">
+        <h4>Ordenar por</h4>
+        <div class="catalog-sort" id="catalog-sort">
+          <label><input type="radio" name="catalog-sort" value="new" checked>Novedades</label>
+          <label><input type="radio" name="catalog-sort" value="ref">Referencia</label>
+          <label><input type="radio" name="catalog-sort" value="price-asc">Precio: menor a mayor</label>
+          <label><input type="radio" name="catalog-sort" value="price-desc">Precio: mayor a menor</label>
+        </div>
+      </div>
+    </aside>
+    <div class="catalog-main">
+      <p class="catalog-note">Estas son las novedades disponibles ahora mismo en esta sección. El catálogo completo de esta categoría se está incorporando a la tienda.</p>
+      <div class="product-row" id="catalog-products"></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1464,18 +1500,70 @@
 
 (function(){
   // Every nav/mega-menu category link opens the same-site catalog overlay instead of
-  // navigating anywhere. It reuses the real product cards already rendered in the
-  // "Novedades" sections for that department (Tattoo / Piercing / Micropigmentación),
-  // and shows the category's own real thumbnail when the source data has one.
+  // navigating anywhere. It mirrors the real site's category-page pattern — breadcrumb
+  // trail, a "categorías relacionadas" sidebar of sibling categories, and a working
+  // "Ordenar por" sort control — while the product grid itself reuses the real product
+  // cards already rendered in that department's "Novedades" section, since the source
+  // data only goes down to department level, not one full catalog per subcategory.
   var overlay = document.getElementById('catalog-overlay');
   if(!overlay) return;
 
   var DEPT_SECTION = { tattoo: 'novedades-tattoo', piercing: 'novedades-piercing', micro: 'novedades-micro' };
+
+  // Build the category tree once from the mega menu already in the DOM, so the
+  // sidebar/breadcrumb can be re-rendered for any sibling without re-reading the menu.
+  var TAXONOMY = {};
+  document.querySelectorAll('.mega').forEach(function(mega){
+    var dept = mega.getAttribute('data-dept');
+    var groups = [];
+    mega.querySelectorAll('.mega-col').forEach(function(col){
+      var titleLink = col.querySelector('.mega-col-title');
+      var items = Array.from(col.querySelectorAll('li > a')).map(function(a){
+        return { name: a.getAttribute('data-cat') || a.textContent.trim(), thumb: a.getAttribute('data-thumb') || null };
+      });
+      groups.push({ title: titleLink.textContent.trim(), items: items });
+    });
+    TAXONOMY[dept] = { label: mega.getAttribute('data-dept-label'), groups: groups };
+  });
+
+  var crumbsEl = document.getElementById('catalog-crumbs');
   var crumbEl = document.getElementById('catalog-crumb');
   var titleEl = document.getElementById('catalog-title');
   var thumbEl = document.getElementById('catalog-thumb');
+  var siblingsEl = document.getElementById('catalog-siblings');
   var productsEl = document.getElementById('catalog-products');
+  var sortEl = document.getElementById('catalog-sort');
   var lastFocused = null;
+
+  function parsePrice(text){
+    var m = /([\d.,]+)\s*€/.exec(text || '');
+    if(!m) return null;
+    return parseFloat(m[1].replace(/\./g, '').replace(',', '.'));
+  }
+
+  function sortProducts(mode){
+    var row = productsEl.querySelector('.product-row');
+    if(!row) return;
+    var cards = Array.from(row.children);
+    if(mode === 'ref'){
+      cards.sort(function(a, b){
+        var ra = (a.querySelector('.product-ref') || {}).textContent || '';
+        var rb = (b.querySelector('.product-ref') || {}).textContent || '';
+        return ra.localeCompare(rb);
+      });
+    } else if(mode === 'price-asc' || mode === 'price-desc'){
+      cards.sort(function(a, b){
+        var pa = parsePrice((a.querySelector('.product-price') || {}).textContent);
+        var pb = parsePrice((b.querySelector('.product-price') || {}).textContent);
+        if(pa === null && pb === null) return 0;
+        if(pa === null) return 1;
+        if(pb === null) return -1;
+        return mode === 'price-asc' ? pa - pb : pb - pa;
+      });
+    }
+    // 'new' (Novedades) = the original source order already in the DOM — nothing to do.
+    cards.forEach(function(card){ row.appendChild(card); });
+  }
 
   function renderProducts(deptSlug){
     productsEl.innerHTML = '';
@@ -1493,17 +1581,81 @@
     row.className = 'product-row';
     cards.forEach(function(card){ row.appendChild(card.cloneNode(true)); });
     productsEl.appendChild(row);
+    var checked = sortEl.querySelector('input:checked');
+    sortEl.querySelectorAll('input').forEach(function(r){ r.checked = (r.value === 'new'); });
+    sortProducts('new');
   }
 
-  function openCatalog(link){
-    var mega = link.closest('.mega');
-    var deptSlug = mega ? mega.getAttribute('data-dept') : null;
-    var deptLabel = mega ? mega.getAttribute('data-dept-label') : (link.closest('.nav-item') ? link.closest('.nav-item').querySelector('.nav-top').textContent.trim() : '');
-    var catName = link.getAttribute('data-cat') || link.textContent.trim();
-    var thumb = link.getAttribute('data-thumb');
+  function renderCrumbs(deptSlug, deptLabel, groupTitle, catName){
+    crumbsEl.innerHTML = '';
+    var parts = [{ label: 'Inicio', action: closeCatalog }];
+    if(deptLabel) parts.push({ label: deptLabel, action: function(){ openPath(deptSlug, groupIndexOf(deptSlug, groupTitle), null); } });
+    if(groupTitle) parts.push({ label: groupTitle, action: function(){ openPath(deptSlug, groupIndexOf(deptSlug, groupTitle), null); }, current: !catName || catName === groupTitle });
+    if(catName && catName !== groupTitle) parts.push({ label: catName, current: true });
 
-    crumbEl.textContent = deptLabel || 'Akira';
+    parts.forEach(function(part, i){
+      if(i > 0){
+        var sep = document.createElement('span');
+        sep.className = 'sep';
+        sep.textContent = '/';
+        crumbsEl.appendChild(sep);
+      }
+      if(part.current){
+        var span = document.createElement('span');
+        span.className = 'current';
+        span.textContent = part.label;
+        crumbsEl.appendChild(span);
+      } else {
+        var a = document.createElement('a');
+        a.href = '#';
+        a.textContent = part.label;
+        a.addEventListener('click', function(e){ e.preventDefault(); part.action(); });
+        crumbsEl.appendChild(a);
+      }
+    });
+  }
+
+  function groupIndexOf(deptSlug, groupTitle){
+    var groups = TAXONOMY[deptSlug] ? TAXONOMY[deptSlug].groups : [];
+    for(var i = 0; i < groups.length; i++){ if(groups[i].title === groupTitle) return i; }
+    return 0;
+  }
+
+  function renderSiblings(deptSlug, groupIndex, activeItemIndex){
+    siblingsEl.innerHTML = '';
+    var dept = TAXONOMY[deptSlug];
+    var group = dept && dept.groups[groupIndex];
+    if(!group || !group.items.length){
+      siblingsEl.parentElement.style.display = 'none';
+      return;
+    }
+    siblingsEl.parentElement.style.display = '';
+    group.items.forEach(function(item, idx){
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#';
+      a.textContent = item.name;
+      if(idx === activeItemIndex) a.className = 'active';
+      a.addEventListener('click', function(e){ e.preventDefault(); openPath(deptSlug, groupIndex, idx); });
+      li.appendChild(a);
+      siblingsEl.appendChild(li);
+    });
+  }
+
+  function openPath(deptSlug, groupIndex, itemIndex){
+    var dept = TAXONOMY[deptSlug];
+    if(!dept) return;
+    var group = dept.groups[groupIndex];
+    var isGroupRoot = (itemIndex === null || itemIndex === undefined);
+    var item = isGroupRoot ? null : group.items[itemIndex];
+    var catName = isGroupRoot ? group.title : item.name;
+    var thumb = isGroupRoot ? null : item.thumb;
+
+    crumbEl.textContent = dept.label || 'Akira';
     titleEl.textContent = catName;
+    renderCrumbs(deptSlug, dept.label, group.title, isGroupRoot ? null : catName);
+    renderSiblings(deptSlug, groupIndex, isGroupRoot ? null : itemIndex);
+
     if(thumb){
       thumbEl.innerHTML = '<img src="' + thumb.replace(/&amp;/g, '&') + '" alt="' + catName.replace(/"/g, '&quot;') + '">';
     } else {
@@ -1511,7 +1663,7 @@
     }
     renderProducts(deptSlug);
 
-    lastFocused = document.activeElement;
+    lastFocused = lastFocused || document.activeElement;
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     overlay.scrollTop = 0;
@@ -1522,13 +1674,26 @@
     overlay.classList.remove('open');
     document.body.style.overflow = '';
     if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    lastFocused = null;
   }
 
   document.querySelectorAll('a.cat-link').forEach(function(link){
     link.addEventListener('click', function(e){
       e.preventDefault();
-      openCatalog(link);
+      var mega = link.closest('.mega');
+      if(!mega) return;
+      var deptSlug = mega.getAttribute('data-dept');
+      var cols = Array.from(mega.querySelectorAll('.mega-col'));
+      var col = link.closest('.mega-col');
+      var groupIndex = cols.indexOf(col);
+      var itemIndex = link.classList.contains('mega-col-title') ? null : Array.from(col.querySelectorAll('li > a')).indexOf(link);
+      lastFocused = document.activeElement;
+      openPath(deptSlug, groupIndex, itemIndex);
     });
+  });
+
+  sortEl.addEventListener('change', function(e){
+    if(e.target.name === 'catalog-sort') sortProducts(e.target.value);
   });
 
   document.getElementById('catalog-close').addEventListener('click', function(e){ e.preventDefault(); closeCatalog(); });
