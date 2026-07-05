@@ -199,6 +199,28 @@
   .nav-flat a:hover{color:var(--white);}
   .nav-item:last-of-type .nav-flat,.nav-item:nth-last-of-type(2) .nav-flat{left:auto;right:0;}
 
+  /* category catalog overlay — opened from any nav/mega-menu category link,
+     stays on this page instead of navigating anywhere */
+  .catalog-overlay{position:fixed;inset:0;background:var(--paper);z-index:200;overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .22s ease, transform .22s ease, visibility 0s linear .22s;}
+  .catalog-overlay.open{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .22s ease, transform .22s ease;}
+  .catalog-bar{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line-dark);z-index:2;}
+  .catalog-bar .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;}
+  .catalog-back{display:inline-flex;align-items:center;gap:8px;color:var(--white);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:0.04em;}
+  .catalog-back svg{width:16px;height:16px;stroke:var(--gold-bright);}
+  .catalog-back:hover{color:var(--gold-bright);}
+  .catalog-close{background:none;border:1px solid var(--line-dark);color:var(--white);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s ease;}
+  .catalog-close:hover{border-color:var(--gold);}
+  .catalog-close svg{width:16px;height:16px;stroke:currentColor;}
+  .catalog-head{display:flex;align-items:center;gap:24px;padding:56px 0 40px;flex-wrap:wrap;}
+  .catalog-thumb{width:104px;height:104px;background:#fff;border:1px solid var(--line-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .catalog-thumb img{width:100%;height:100%;object-fit:contain;}
+  .catalog-thumb svg{width:44px;height:44px;stroke:var(--gold);}
+  .catalog-crumb{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;}
+  .catalog-head h1{font-family:var(--sans);font-weight:800;font-size:clamp(26px,3.4vw,38px);text-transform:uppercase;color:var(--ink);letter-spacing:-0.005em;}
+  .catalog-note{padding:24px 0 8px;font-size:12.5px;color:var(--ink-soft);border-top:1px solid var(--line-light);}
+  .catalog-empty{padding:60px 0 100px;text-align:center;color:var(--ink-soft);font-size:14px;}
+  .catalog-products{padding-bottom:110px;}
+
   /* novedades / product cards */
   .novedades{padding:90px 0;background:var(--paper);border-bottom:1px solid var(--line-light);}
   .novedades-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:40px;}
@@ -220,8 +242,8 @@
   .product-desc{font-size:12px;color:var(--ink-soft);line-height:1.5;margin-bottom:12px;flex:1;}
   .product-price{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--ink);margin-bottom:14px;display:block;}
   .product-cta{width:100%;justify-content:center;padding:12px 18px;font-size:11.5px;}
-  .novedades .btn-line{color:var(--ink);border-color:var(--line-light);}
-  .novedades .btn-line:hover{border-color:var(--ink);}
+  .novedades .btn-line,.catalog-overlay .btn-line{color:var(--ink);border-color:var(--line-light);}
+  .novedades .btn-line:hover,.catalog-overlay .btn-line:hover{border-color:var(--ink);}
   .price-note{font-size:11.5px;color:var(--ink-soft);text-align:center;padding:18px 0;background:var(--paper);}
 
   /* newsletter legal check */
@@ -275,232 +297,231 @@
   <div class="wrap nav-row">
     <a href="#" class="logo">AKIRA<span class="sub">Body Art Supply</span></a>
     <nav class="primary" id="primary-nav">
-      <a href="#" class="active">Inicio</a>
       <div class="nav-item">
         <a href="#" class="nav-top">Tattoo<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
-        <div class="mega" id="mega-tattoo">
+        <div class="mega" id="mega-tattoo" data-dept="tattoo" data-dept-label="Tattoo">
           <div class="mega-cols">
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Agujas de tatuar</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Agujas de tatuar">Agujas de tatuar</a>
               <ul>
-                <li><a href="#">AKIRA</a></li>
-                <li><a href="#">EDGE PRO</a></li>
-                <li><a href="#">ARROW</a></li>
-                <li><a href="#">OZER G</a></li>
-                <li><a href="#">DA VINCI</a></li>
-                <li><a href="#">FINELINE</a></li>
-                <li><a href="#">EZ REVOLUTION</a></li>
-                <li><a href="#">KWADRON</a></li>
-                <li><a href="#">ELITE</a></li>
-                <li><a href="#">Agujas AKIRA</a></li>
-                <li><a href="#">Agujas PLATINUM</a></li>
-                <li><a href="#">Agujas KWADRON</a></li>
-                <li><a href="#">Agujas-Boli</a></li>
+                <li><a class="cat-link" href="#" data-cat="AKIRA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c679_AGUJAS-CARTUCHO-AKIRA.jpg">AKIRA</a></li>
+                <li><a class="cat-link" href="#" data-cat="EDGE PRO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c909_EDGE%20PRO.jpg">EDGE PRO</a></li>
+                <li><a class="cat-link" href="#" data-cat="ARROW" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1019_AGUJAS-ARROW.jpg">ARROW</a></li>
+                <li><a class="cat-link" href="#" data-cat="OZER G" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1027_OZER.jpg">OZER G</a></li>
+                <li><a class="cat-link" href="#" data-cat="DA VINCI" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c905_DAVINCI.jpg">DA VINCI</a></li>
+                <li><a class="cat-link" href="#" data-cat="FINELINE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c976_FINE%20LINE.jpg">FINELINE</a></li>
+                <li><a class="cat-link" href="#" data-cat="EZ REVOLUTION" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c473_EZ%20REVOLUTION-V.jpg">EZ REVOLUTION</a></li>
+                <li><a class="cat-link" href="#" data-cat="KWADRON" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c516_Cartuchos-KWADRON.jpg">KWADRON</a></li>
+                <li><a class="cat-link" href="#" data-cat="ELITE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c412_AGUJAS-ELITE-IN1.jpg">ELITE</a></li>
+                <li><a class="cat-link" href="#" data-cat="Agujas AKIRA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c163_AGUJAS-AKIRA.jpg">Agujas AKIRA</a></li>
+                <li><a class="cat-link" href="#" data-cat="Agujas PLATINUM" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c402_AGUJAS-PLATINIUM.jpg">Agujas PLATINUM</a></li>
+                <li><a class="cat-link" href="#" data-cat="Agujas KWADRON" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c410_AGUJAS-KWADRON.jpg">Agujas KWADRON</a></li>
+                <li><a class="cat-link" href="#" data-cat="Agujas-Boli" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c846_AGUJAS-BOLI.jpg">Agujas-Boli</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Máquinas Rotativas</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Máquinas Rotativas">Máquinas Rotativas</a>
               <ul>
-                <li><a href="#">WIRELESS</a></li>
-                <li><a href="#">BATERÍAS</a></li>
-                <li><a href="#">WIRELESS ECO</a></li>
-                <li><a href="#">BATERÍAS ECO</a></li>
-                <li><a href="#">ECONÓMICAS</a></li>
-                <li><a href="#">ARX</a></li>
-                <li><a href="#">INK LAB</a></li>
-                <li><a href="#">FK IRONS</a></li>
-                <li><a href="#">CHEYENNE</a></li>
-                <li><a href="#">CRITICAL</a></li>
-                <li><a href="#">BISHOP</a></li>
-                <li><a href="#">EQUALISER</a></li>
-                <li><a href="#">MUSOTOKU</a></li>
-                <li><a href="#">ARTDRIVER</a></li>
-                <li><a href="#">AVA</a></li>
-                <li><a href="#">AMBITION</a></li>
-                <li><a href="#">MAST</a></li>
-                <li><a href="#">ELECTRIC INK</a></li>
-                <li><a href="#">MERKA MACHINES</a></li>
-                <li><a href="#">KOBRA IRONS</a></li>
-                <li><a href="#">PABLO 1880</a></li>
-                <li><a href="#">ELITE</a></li>
-                <li><a href="#">FIVE MOTHS</a></li>
-                <li><a href="#">EZ Tattoo</a></li>
-                <li><a href="#">HUMMINGBIRD</a></li>
-                <li><a href="#">PAULO CRUZES</a></li>
-                <li><a href="#">LAURO PAOLINI</a></li>
-                <li><a href="#">INKJECTA</a></li>
-                <li><a href="#">VICTOR PORTUGAL</a></li>
-                <li><a href="#">EGO</a></li>
-                <li><a href="#">COKO</a></li>
-                <li><a href="#">ALEX</a></li>
-                <li><a href="#">DINO CASARINI</a></li>
-                <li><a href="#">NICK</a></li>
-                <li><a href="#">BALA</a></li>
-                <li><a href="#">Hand-Poked Tattoo</a></li>
-                <li><a href="#">Repuestos - Accesorios</a></li>
+                <li><a class="cat-link" href="#" data-cat="WIRELESS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c699_WIRELESS-2.0.jpg">WIRELESS</a></li>
+                <li><a class="cat-link" href="#" data-cat="BATERÍAS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c821_BATERIAS.jpg">BATERÍAS</a></li>
+                <li><a class="cat-link" href="#" data-cat="WIRELESS ECO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c819_WIRELESS-ECO.jpg">WIRELESS ECO</a></li>
+                <li><a class="cat-link" href="#" data-cat="BATERÍAS ECO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c823_BATERIAS-ECO.jpg">BATERÍAS ECO</a></li>
+                <li><a class="cat-link" href="#" data-cat="ECONÓMICAS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c335_Economicas.jpg">ECONÓMICAS</a></li>
+                <li><a class="cat-link" href="#" data-cat="ARX" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c935_ARX.jpg">ARX</a></li>
+                <li><a class="cat-link" href="#" data-cat="INK LAB" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1010_INK%20LAB.jpg">INK LAB</a></li>
+                <li><a class="cat-link" href="#" data-cat="FK IRONS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c512_FK-2.0.jpg">FK IRONS</a></li>
+                <li><a class="cat-link" href="#" data-cat="CHEYENNE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c532_CHEYENNE-2.0.jpg">CHEYENNE</a></li>
+                <li><a class="cat-link" href="#" data-cat="CRITICAL" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c848_CRITICAL_maquina_tatuaje_rotary_wireless_bateria_tattoo_material.jpg">CRITICAL</a></li>
+                <li><a class="cat-link" href="#" data-cat="BISHOP" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c304_Bishop_NEW.jpg">BISHOP</a></li>
+                <li><a class="cat-link" href="#" data-cat="EQUALISER" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c439_EQUALISER-02.jpg">EQUALISER</a></li>
+                <li><a class="cat-link" href="#" data-cat="MUSOTOKU" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1003_MUSOTOKU.jpg">MUSOTOKU</a></li>
+                <li><a class="cat-link" href="#" data-cat="ARTDRIVER" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c421_ART%20DRIVE-NUEVO.jpg">ARTDRIVER</a></li>
+                <li><a class="cat-link" href="#" data-cat="AVA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c681_AVA-3_0.jpg">AVA</a></li>
+                <li><a class="cat-link" href="#" data-cat="AMBITION" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c980_AMBITION.jpg">AMBITION</a></li>
+                <li><a class="cat-link" href="#" data-cat="MAST" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c793_MAST_rotary_tattoo_tatuaje_material_batery_wireless_mast..jpg">MAST</a></li>
+                <li><a class="cat-link" href="#" data-cat="ELECTRIC INK" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c703_ELECTRIC.jpg">ELECTRIC INK</a></li>
+                <li><a class="cat-link" href="#" data-cat="MERKA MACHINES" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c915_MERKA.jpg">MERKA MACHINES</a></li>
+                <li><a class="cat-link" href="#" data-cat="KOBRA IRONS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c927_KOBRA.jpg">KOBRA IRONS</a></li>
+                <li><a class="cat-link" href="#" data-cat="PABLO 1880" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c673_PABLO%201880-1.jpg">PABLO 1880</a></li>
+                <li><a class="cat-link" href="#" data-cat="ELITE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c362_ELITE_new-3.0.jpg">ELITE</a></li>
+                <li><a class="cat-link" href="#" data-cat="FIVE MOTHS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c350_FIVE_MOTHS-2.jpg">FIVE MOTHS</a></li>
+                <li><a class="cat-link" href="#" data-cat="EZ Tattoo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c406_EZ1-2.0.jpg">EZ Tattoo</a></li>
+                <li><a class="cat-link" href="#" data-cat="HUMMINGBIRD" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c504_Hummingbird.jpg">HUMMINGBIRD</a></li>
+                <li><a class="cat-link" href="#" data-cat="PAULO CRUZES" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c368_PAULO-CRUZES.jpg">PAULO CRUZES</a></li>
+                <li><a class="cat-link" href="#" data-cat="LAURO PAOLINI" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c396_LAURO-PAOLINI.jpg">LAURO PAOLINI</a></li>
+                <li><a class="cat-link" href="#" data-cat="INKJECTA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c356_INKJECTA%2020181.jpg">INKJECTA</a></li>
+                <li><a class="cat-link" href="#" data-cat="VICTOR PORTUGAL" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c553_AKIRA_Rotativas-VICTOR-PORTUGAL.jpg">VICTOR PORTUGAL</a></li>
+                <li><a class="cat-link" href="#" data-cat="EGO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c360_EGO.jpg">EGO</a></li>
+                <li><a class="cat-link" href="#" data-cat="COKO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c683_AKIRA_Coko.jpg">COKO</a></li>
+                <li><a class="cat-link" href="#" data-cat="ALEX" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c302_ALEX%20RODRIGUEZ%20New.jpg">ALEX</a></li>
+                <li><a class="cat-link" href="#" data-cat="DINO CASARINI" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c343_DINO-CASARINI.jpg">DINO CASARINI</a></li>
+                <li><a class="cat-link" href="#" data-cat="NICK" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c300_NICK.jpg">NICK</a></li>
+                <li><a class="cat-link" href="#" data-cat="BALA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c306_BALA.jpg">BALA</a></li>
+                <li><a class="cat-link" href="#" data-cat="Hand-Poked Tattoo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c481_Hand-Poked-Tattoo.jpg">Hand-Poked Tattoo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Repuestos - Accesorios" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c312_Repuestos---Accesorios.jpg">Repuestos - Accesorios</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Máquinas de Bobinas</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Máquinas de Bobinas">Máquinas de Bobinas</a>
               <ul>
-                <li><a href="#">Alex Rodríguez</a></li>
-                <li><a href="#">Coko</a></li>
-                <li><a href="#">RUSKI MACHINES</a></li>
-                <li><a href="#">Diego Morales</a></li>
-                <li><a href="#">Bara</a></li>
-                <li><a href="#">Nick</a></li>
-                <li><a href="#">Máquinas Económicas</a></li>
-                <li><a href="#">Hand-Poked Tattoo</a></li>
-                <li><a href="#">Mini-máquinas</a></li>
-                <li><a href="#">Máquinas de Juguete</a></li>
-                <li><a href="#">Herramientas para máquinas</a></li>
-                <li><a href="#">Repuestos para máquinas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Alex Rodríguez" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c109_1-ALEX-RODRIGEZ.jpg">Alex Rodríguez</a></li>
+                <li><a class="cat-link" href="#" data-cat="Coko" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c233_TOLEDO_IRON-2.jpg">Coko</a></li>
+                <li><a class="cat-link" href="#" data-cat="RUSKI MACHINES" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c475_AKIRA-RK-B-BOTON.jpg">RUSKI MACHINES</a></li>
+                <li><a class="cat-link" href="#" data-cat="Diego Morales" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c404_3-DIEGO-MORALES.jpg">Diego Morales</a></li>
+                <li><a class="cat-link" href="#" data-cat="Bara" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c203_6-BARA.jpg">Bara</a></li>
+                <li><a class="cat-link" href="#" data-cat="Nick" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c316_7-NICK%27S.jpg">Nick</a></li>
+                <li><a class="cat-link" href="#" data-cat="Máquinas Económicas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c669_8%20Maquinas%20economicas1.jpg">Máquinas Económicas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Hand-Poked Tattoo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c479_Hand-Poked-Tattoo.jpg">Hand-Poked Tattoo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Mini-máquinas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c170_11-MINI--MAQUINAS.jpg">Mini-máquinas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Máquinas de Juguete" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c540_MAQUINAS-JUGUETE.jpg">Máquinas de Juguete</a></li>
+                <li><a class="cat-link" href="#" data-cat="Herramientas para máquinas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c239_10-HERRAMIENTAS--MAQUINAS.jpg">Herramientas para máquinas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Repuestos para máquinas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c133_9-REPUESTOS-MAQUINAS.jpg">Repuestos para máquinas</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">KITs de Tattoo</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="KITs de Tattoo">KITs de Tattoo</a>
               <ul>
-                <li><a href="#">KITs de Tattoo</a></li>
+                <li><a class="cat-link" href="#" data-cat="KITs de Tattoo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c380_KIT-DE-TATTOO.jpg">KITs de Tattoo</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Tintas AEMPS</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Tintas AEMPS">Tintas AEMPS</a>
               <ul>
-                <li><a href="#">VIKING</a></li>
-                <li><a href="#">ELECTRIC INK</a></li>
-                <li><a href="#">BIOTEK</a></li>
-                <li><a href="#">ECLIPSE</a></li>
-                <li><a href="#">DOREME</a></li>
+                <li><a class="cat-link" href="#" data-cat="VIKING" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c723_VIKING.jpg">VIKING</a></li>
+                <li><a class="cat-link" href="#" data-cat="ELECTRIC INK" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c856_ELECTRIC-AEMPS.jpg">ELECTRIC INK</a></li>
+                <li><a class="cat-link" href="#" data-cat="BIOTEK" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c889_biotek-pigmentos-cejas-mte.jpg">BIOTEK</a></li>
+                <li><a class="cat-link" href="#" data-cat="ECLIPSE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c899_ECLIPSE.jpg">ECLIPSE</a></li>
+                <li><a class="cat-link" href="#" data-cat="DOREME" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c919_7I-DOREME.jpg">DOREME</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Tintas de Uso Artístico</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Tintas de Uso Artístico">Tintas de Uso Artístico</a>
               <ul>
-                <li><a href="#">ETERNAL INK</a></li>
-                <li><a href="#">SOLID INK</a></li>
-                <li><a href="#">DERMAGLO</a></li>
-                <li><a href="#">VICE</a></li>
-                <li><a href="#">FLASH COLORZ</a></li>
-                <li><a href="#">WORLD FAMOUS</a></li>
-                <li><a href="#">RADIANT</a></li>
-                <li><a href="#">HYPE</a></li>
-                <li><a href="#">ALLEGORY</a></li>
-                <li><a href="#">KWADRON</a></li>
-                <li><a href="#">DYNAMIC</a></li>
-                <li><a href="#">OBAKE</a></li>
-                <li><a href="#">NUCLEAR WHITE</a></li>
-                <li><a href="#">SOMBRAS</a></li>
-                <li><a href="#">DILUYENTES</a></li>
+                <li><a class="cat-link" href="#" data-cat="ETERNAL INK" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c911_Eternal.jpg">ETERNAL INK</a></li>
+                <li><a class="cat-link" href="#" data-cat="SOLID INK" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1021_SOLID%20INK-0.jpg">SOLID INK</a></li>
+                <li><a class="cat-link" href="#" data-cat="DERMAGLO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c946_DERMAGLO.jpg">DERMAGLO</a></li>
+                <li><a class="cat-link" href="#" data-cat="VICE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c897_VICE.jpg">VICE</a></li>
+                <li><a class="cat-link" href="#" data-cat="FLASH COLORZ" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1031_FLASH.jpg">FLASH COLORZ</a></li>
+                <li><a class="cat-link" href="#" data-cat="WORLD FAMOUS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c756_WORLD%20FAMOUS-3.0.jpg">WORLD FAMOUS</a></li>
+                <li><a class="cat-link" href="#" data-cat="RADIANT" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c815_Radiant.jpg">RADIANT</a></li>
+                <li><a class="cat-link" href="#" data-cat="HYPE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1039_HYPE.jpg">HYPE</a></li>
+                <li><a class="cat-link" href="#" data-cat="ALLEGORY" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1041_ALLEGORY.jpg">ALLEGORY</a></li>
+                <li><a class="cat-link" href="#" data-cat="KWADRON" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c970_INX.jpg">KWADRON</a></li>
+                <li><a class="cat-link" href="#" data-cat="DYNAMIC" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c929_Dynamic.jpg">DYNAMIC</a></li>
+                <li><a class="cat-link" href="#" data-cat="OBAKE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1043_OBAKE.jpg">OBAKE</a></li>
+                <li><a class="cat-link" href="#" data-cat="NUCLEAR WHITE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c931_NUCLEAR-WHITE1.jpg">NUCLEAR WHITE</a></li>
+                <li><a class="cat-link" href="#" data-cat="SOMBRAS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1045_SOMBRAS.jpg">SOMBRAS</a></li>
+                <li><a class="cat-link" href="#" data-cat="DILUYENTES" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c518_Diluyente.jpg">DILUYENTES</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Tips y Grips Tattoo</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Tips y Grips Tattoo">Tips y Grips Tattoo</a>
               <ul>
-                <li><a href="#">Desechables más Agujas</a></li>
-                <li><a href="#">Desechables Cartucho</a></li>
-                <li><a href="#">Tips Desechables</a></li>
-                <li><a href="#">Grips Telescópicos</a></li>
-                <li><a href="#">Grips Desechables</a></li>
-                <li><a href="#">Grips para Cartuchos</a></li>
-                <li><a href="#">Grips</a></li>
-                <li><a href="#">Tips</a></li>
+                <li><a class="cat-link" href="#" data-cat="Desechables más Agujas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c510_Pack%20Desechable%20con%20Aguja.jpg">Desechables más Agujas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Desechables Cartucho" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c463_Grip_Desechables_Cartucho-2.jpg">Desechables Cartucho</a></li>
+                <li><a class="cat-link" href="#" data-cat="Tips Desechables" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c374_Tips-Desechables.jpg">Tips Desechables</a></li>
+                <li><a class="cat-link" href="#" data-cat="Grips Telescópicos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c536_GRIP%20TELESCOPICOS.jpg">Grips Telescópicos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Grips Desechables" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c376_Grip_Desechables-2.jpg">Grips Desechables</a></li>
+                <li><a class="cat-link" href="#" data-cat="Grips para Cartuchos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c457_GRIPS_CARTUCHO.jpg">Grips para Cartuchos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Grips" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c182_GRIPS.jpg">Grips</a></li>
+                <li><a class="cat-link" href="#" data-cat="Tips" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c180_Tips-Acero.jpg">Tips</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Fuentes y Baterías</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Fuentes y Baterías">Fuentes y Baterías</a>
               <ul>
-                <li><a href="#">BATERÍAS</a></li>
-                <li><a href="#">BATERÍAS ECONÓMICAS</a></li>
-                <li><a href="#">KWADRON</a></li>
-                <li><a href="#">MUSOTOKU</a></li>
-                <li><a href="#">FIVE MOTHS</a></li>
-                <li><a href="#">FK IRONS</a></li>
-                <li><a href="#">LAURO PAOLINI</a></li>
-                <li><a href="#">CRITICAL TATTOO</a></li>
-                <li><a href="#">CHEYENNE</a></li>
-                <li><a href="#">Fuentes Económicas</a></li>
-                <li><a href="#">Cables y Transformadores</a></li>
+                <li><a class="cat-link" href="#" data-cat="BATERÍAS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c826_BATERIAS.jpg">BATERÍAS</a></li>
+                <li><a class="cat-link" href="#" data-cat="BATERÍAS ECONÓMICAS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c417_BATERIAS-ECO.jpg">BATERÍAS ECONÓMICAS</a></li>
+                <li><a class="cat-link" href="#" data-cat="KWADRON" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c419_kwadron-2.jpg">KWADRON</a></li>
+                <li><a class="cat-link" href="#" data-cat="MUSOTOKU" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c443_MUSO.jpg">MUSOTOKU</a></li>
+                <li><a class="cat-link" href="#" data-cat="FIVE MOTHS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c352_2-4-FiveMoth.jpg">FIVE MOTHS</a></li>
+                <li><a class="cat-link" href="#" data-cat="FK IRONS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c701_FK%20IRONS.jpg">FK IRONS</a></li>
+                <li><a class="cat-link" href="#" data-cat="LAURO PAOLINI" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c262_Lauro-Paolini.jpg">LAURO PAOLINI</a></li>
+                <li><a class="cat-link" href="#" data-cat="CRITICAL TATTOO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c469_Critical-dic19.jpg">CRITICAL TATTOO</a></li>
+                <li><a class="cat-link" href="#" data-cat="CHEYENNE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c534_Cheyenne.jpg">CHEYENNE</a></li>
+                <li><a class="cat-link" href="#" data-cat="Fuentes Económicas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c266_Fuentes%20Econ%C3%B3micas12345.jpg">Fuentes Económicas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Cables y Transformadores" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c721_CABLES%20Y%20TRANSFORMADORES.jpg">Cables y Transformadores</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Cables y Pedales</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Cables y Pedales">Cables y Pedales</a>
               <ul>
-                <li><a href="#">Conector RCA</a></li>
-                <li><a href="#">Conector Clip-Cord</a></li>
-                <li><a href="#">Conmut. - Adapt.</a></li>
-                <li><a href="#">Pedales CUSTOM</a></li>
-                <li><a href="#">Pedales Económicos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Conector RCA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c276_CONECTOR%20RCA1.jpg">Conector RCA</a></li>
+                <li><a class="cat-link" href="#" data-cat="Conector Clip-Cord" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c278_CONECTOR%20CLASICO2.jpg">Conector Clip-Cord</a></li>
+                <li><a class="cat-link" href="#" data-cat="Conmut. - Adapt." data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c280_CONMUT%20%20ADAPT1.jpg">Conmut. - Adapt.</a></li>
+                <li><a class="cat-link" href="#" data-cat="Pedales CUSTOM" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c268_Pedales-CUSTOM.jpg">Pedales CUSTOM</a></li>
+                <li><a class="cat-link" href="#" data-cat="Pedales Económicos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c274_Pedales%20Economicos1.jpg">Pedales Económicos</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Accesorios Tattoo</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Accesorios Tattoo">Accesorios Tattoo</a>
               <ul>
-                <li><a href="#">Stencil</a></li>
-                <li><a href="#">Accesorios Calco</a></li>
-                <li><a href="#">Accesorios Dibujo</a></li>
-                <li><a href="#">Accesorios Máquina</a></li>
-                <li><a href="#">Accesorios Tinta</a></li>
-                <li><a href="#">Accesorios Prácticas</a></li>
-                <li><a href="#">Accesorios varios</a></li>
+                <li><a class="cat-link" href="#" data-cat="Stencil" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c887_1-1Stencil.jpg">Stencil</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Calco" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c135_1.0_Accesorios-Calco.jpg">Accesorios Calco</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Dibujo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c675_2_Accesorios-Dibujo.jpg">Accesorios Dibujo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Máquina" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c214_3_Accesorios-Maquina1.jpg">Accesorios Máquina</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Tinta" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c216_4_Accesorios-Tinta1.jpg">Accesorios Tinta</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Prácticas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c677_5_Accesorios-Practicas.jpg">Accesorios Prácticas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios varios" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c218_6__Accesorios-Varios1.jpg">Accesorios varios</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Sanitario Tattoo</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Sanitario Tattoo">Sanitario Tattoo</a>
               <ul>
-                <li><a href="#">Guantes</a></li>
-                <li><a href="#">Limpieza - Jabones</a></li>
-                <li><a href="#">Desinfección</a></li>
-                <li><a href="#">Protección - Fundas</a></li>
-                <li><a href="#">Cuidados Tattoo</a></li>
-                <li><a href="#">Cuidados Cianocrilato</a></li>
-                <li><a href="#">Apósitos Curación</a></li>
-                <li><a href="#">Preparación del Tattoo</a></li>
-                <li><a href="#">Gestión de Residuos</a></li>
-                <li><a href="#">Esterilización</a></li>
+                <li><a class="cat-link" href="#" data-cat="Guantes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c291_GUANTES-4.0.jpg">Guantes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Limpieza - Jabones" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c293_LIMPIEZA%20123%20.jpg">Limpieza - Jabones</a></li>
+                <li><a class="cat-link" href="#" data-cat="Desinfección" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c445_DESINFECCION-2.jpg">Desinfección</a></li>
+                <li><a class="cat-link" href="#" data-cat="Protección - Fundas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c297_PROTECCION%20Y%20FUNDAS-1.jpg">Protección - Fundas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Cuidados Tattoo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c295_Cuidados%20Tattoo%202.0.jpg">Cuidados Tattoo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Cuidados Cianocrilato" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1037_CIANOCRILATO.jpg">Cuidados Cianocrilato</a></li>
+                <li><a class="cat-link" href="#" data-cat="Apósitos Curación" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c384_SANIDERM-2.jpg">Apósitos Curación</a></li>
+                <li><a class="cat-link" href="#" data-cat="Preparación del Tattoo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c447_PREPARACION-DEL-TATTOO-2.jpg">Preparación del Tattoo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Gestión de Residuos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c449_GESTION-DE-RESIDUOS-2.jpg">Gestión de Residuos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Esterilización" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c211_MAQUINAS-LIMPIEZA-2.jpg">Esterilización</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Láser</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Láser">Láser</a>
               <ul>
-                <li><a href="#">Láser</a></li>
+                <li><a class="cat-link" href="#" data-cat="Láser" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c228_LASER1.jpg">Láser</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Mobiliario</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Mobiliario">Mobiliario</a>
               <ul>
-                <li><a href="#">Camillas</a></li>
-                <li><a href="#">Mesas</a></li>
-                <li><a href="#">Taburetes</a></li>
-                <li><a href="#">Apoyabrazos</a></li>
-                <li><a href="#">Iluminación</a></li>
-                <li><a href="#">Rótulos Luminosos</a></li>
-                <li><a href="#">Lavamanos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Camillas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c221_1.1Camillas.jpg">Camillas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Mesas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c862_1.3mesas.jpg">Mesas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Taburetes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c860_1.2Taburete.jpg">Taburetes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Apoyabrazos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c558_Apoyabrazos_AKIRA.jpg">Apoyabrazos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Iluminación" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c560_9B-Iluminacion-1.jpg">Iluminación</a></li>
+                <li><a class="cat-link" href="#" data-cat="Rótulos Luminosos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c562_Rotulos-Luminosos_AKIRA.jpg">Rótulos Luminosos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Lavamanos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c564_Lavamanos_AKIRA.jpg">Lavamanos</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Librería, DVDs, Flash</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Librería, DVDs, Flash">Librería, DVDs, Flash</a>
               <ul>
-                <li><a href="#">Libros</a></li>
-                <li><a href="#">DVDs</a></li>
-                <li><a href="#">Flash</a></li>
+                <li><a class="cat-link" href="#" data-cat="Libros" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c125_LIBROS.jpg">Libros</a></li>
+                <li><a class="cat-link" href="#" data-cat="DVDs" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c324_DVD.jpg">DVDs</a></li>
+                <li><a class="cat-link" href="#" data-cat="Flash" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c111_FLASH.jpg">Flash</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Decoración</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Decoración">Decoración</a>
               <ul>
-                <li><a href="#">Pósters</a></li>
-                <li><a href="#">Decoración</a></li>
-                <li><a href="#">Varios</a></li>
+                <li><a class="cat-link" href="#" data-cat="Pósters" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c746_Poster-bueno.jpg">Pósters</a></li>
+                <li><a class="cat-link" href="#" data-cat="Decoración" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c237_DECORACION.jpg">Decoración</a></li>
+                <li><a class="cat-link" href="#" data-cat="Varios" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c57_Merchandising-varios.jpg">Varios</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Outlet Tattoo</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Outlet Tattoo">Outlet Tattoo</a>
               <ul>
-                <li><a href="#">Oferta Máquinas Rotativas</a></li>
-                <li><a href="#">Oferta Máquinas de Bobinas</a></li>
-                <li><a href="#">Oferta Agujas-Grips-Tips</a></li>
-                <li><a href="#">Oferta Fuentes-Cables</a></li>
-                <li><a href="#">Ofertas Variadas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Oferta Máquinas Rotativas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c545_Maquinas%20Rotativa.jpg">Oferta Máquinas Rotativas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Oferta Máquinas de Bobinas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c958_Maquinas%20Bobinas.jpg">Oferta Máquinas de Bobinas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Oferta Agujas-Grips-Tips" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c547_Ofertas%20Agujas%20y%20Grip1.jpg">Oferta Agujas-Grips-Tips</a></li>
+                <li><a class="cat-link" href="#" data-cat="Oferta Fuentes-Cables" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c549_Fuentes-y-cables.jpg">Oferta Fuentes-Cables</a></li>
+                <li><a class="cat-link" href="#" data-cat="Ofertas Variadas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c551_Ofertas-Variadas.jpg">Ofertas Variadas</a></li>
               </ul>
             </div>
           </div>
@@ -508,202 +529,202 @@
       </div>
       <div class="nav-item">
         <a href="#" class="nav-top">Piercing<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
-        <div class="mega" id="mega-piercing">
+        <div class="mega" id="mega-piercing" data-dept="piercing" data-dept-label="Piercing">
           <div class="mega-cols">
             <div class="mega-col">
-              <a class="mega-col-title" href="#">AKA - Fine Jewelry</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="AKA - Fine Jewelry">AKA - Fine Jewelry</a>
               <ul>
-                <li><a href="#">BÁSICO</a></li>
-                <li><a href="#">ORO ANODIZADO</a></li>
-                <li><a href="#">LENGUA</a></li>
-                <li><a href="#">CEJAS</a></li>
-                <li><a href="#">OMBLIGO</a></li>
-                <li><a href="#">OREJA</a></li>
-                <li><a href="#">LABIO</a></li>
-                <li><a href="#">NARIZ</a></li>
-                <li><a href="#">PEZÓN</a></li>
-                <li><a href="#">SURFACE</a></li>
-                <li><a href="#">REPUESTOS</a></li>
-                <li><a href="#">PUSH PIN</a></li>
-                <li><a href="#">CHARM</a></li>
+                <li><a class="cat-link" href="#" data-cat="BÁSICO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c506_1.1-Basicos%20Rosca%20Interna.jpg">BÁSICO</a></li>
+                <li><a class="cat-link" href="#" data-cat="ORO ANODIZADO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c925_TITANIO%20ORO-INTERNAL-AKA.jpg">ORO ANODIZADO</a></li>
+                <li><a class="cat-link" href="#" data-cat="LENGUA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c828_1.2-Lengua_barbel_Rosca_Interna_piercing_rosca_interna_titanio_g23.jpg">LENGUA</a></li>
+                <li><a class="cat-link" href="#" data-cat="CEJAS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c830_1.3-Ceja_piercing_minibanana_rosca_interna_titanio_g23.jpg">CEJAS</a></li>
+                <li><a class="cat-link" href="#" data-cat="OMBLIGO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c832_1.4_ombligo_piercing_minibanana_rosca_interna_titanio_g23.jpg">OMBLIGO</a></li>
+                <li><a class="cat-link" href="#" data-cat="OREJA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c834_1-55_oreja_aros_piercing_minibanana_rosca_interna_titanio_g23.jpg">OREJA</a></li>
+                <li><a class="cat-link" href="#" data-cat="LABIO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c836_1.6_labio_labret_aros_piercing_minibanana_rosca_interna_titanio_g23.jpg">LABIO</a></li>
+                <li><a class="cat-link" href="#" data-cat="NARIZ" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c885_1-5-0_Nariz.jpg">NARIZ</a></li>
+                <li><a class="cat-link" href="#" data-cat="PEZÓN" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c838_1-7_Pezon_labret_aros_piercing_minibanana_rosca_interna_titanio_g23.jpg">PEZÓN</a></li>
+                <li><a class="cat-link" href="#" data-cat="SURFACE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c852_1-7-1_Surface.jpg">SURFACE</a></li>
+                <li><a class="cat-link" href="#" data-cat="REPUESTOS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c840_1-8_repuestos_labret_aros_piercing_minibanana_rosca_interna_titanio_g23.jpg">REPUESTOS</a></li>
+                <li><a class="cat-link" href="#" data-cat="PUSH PIN" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c993_PUSH%20PIN.jpg">PUSH PIN</a></li>
+                <li><a class="cat-link" href="#" data-cat="CHARM" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1014_CHARM.jpg">CHARM</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Oro 14K</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Oro 14K">Oro 14K</a>
               <ul>
-                <li><a href="#">Oro 14K</a></li>
+                <li><a class="cat-link" href="#" data-cat="Oro 14K" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c991_1-1-ORO-14K.jpg">Oro 14K</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Titanio</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Titanio">Titanio</a>
               <ul>
-                <li><a href="#">Titanio Crudo</a></li>
-                <li><a href="#">Titanio Color</a></li>
-                <li><a href="#">Titanio Negro</a></li>
-                <li><a href="#">Titanio Oro</a></li>
-                <li><a href="#">Titanio Estéril</a></li>
-                <li><a href="#">Titanio Colección</a></li>
+                <li><a class="cat-link" href="#" data-cat="Titanio Crudo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c146_TITANIO%20CRUDO-1.0.jpg">Titanio Crudo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Titanio Color" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c25_TITANIO_COLOR-2.jpg">Titanio Color</a></li>
+                <li><a class="cat-link" href="#" data-cat="Titanio Negro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c32_TITANIO_NEGRO-2.jpg">Titanio Negro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Titanio Oro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c46_TITANIO-ORO-2.jpg">Titanio Oro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Titanio Estéril" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c768_TITANIO%20%20ESTERIL.jpg">Titanio Estéril</a></li>
+                <li><a class="cat-link" href="#" data-cat="Titanio Colección" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c850_COLECCION%20TITANIO3.0.jpg">Titanio Colección</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Acero 316L</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Acero 316L">Acero 316L</a>
               <ul>
-                <li><a href="#">Línea Básica</a></li>
-                <li><a href="#">Acero Negro</a></li>
-                <li><a href="#">Negro Mate</a></li>
-                <li><a href="#">Acero Anodizado Oro</a></li>
-                <li><a href="#">Rosca Interna</a></li>
-                <li><a href="#">Acero Estéril</a></li>
+                <li><a class="cat-link" href="#" data-cat="Línea Básica" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c16_LINEA-BASICA-2.jpg">Línea Básica</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acero Negro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c30_ACERO_NEGRO-2.jpg">Acero Negro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Negro Mate" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c34_NEGRO_MATE-2.jpg">Negro Mate</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acero Anodizado Oro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c44_ACERO-ORO-2.jpg">Acero Anodizado Oro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Rosca Interna" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c20_Rosca-Interna.jpg">Rosca Interna</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acero Estéril" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c766_ACERO%20ESTERIL.jpg">Acero Estéril</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Colección Acero</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Colección Acero">Colección Acero</a>
               <ul>
-                <li><a href="#">Lengua</a></li>
-                <li><a href="#">Ceja</a></li>
-                <li><a href="#">Ombligo</a></li>
-                <li><a href="#">Oreja</a></li>
-                <li><a href="#">Labio</a></li>
-                <li><a href="#">Nariz</a></li>
-                <li><a href="#">Pezón</a></li>
+                <li><a class="cat-link" href="#" data-cat="Lengua" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c484_Akira_Piercing_Acero_LENGUA.jpg">Lengua</a></li>
+                <li><a class="cat-link" href="#" data-cat="Ceja" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c486_Akira_Piercing_Acero_CEJA.jpg">Ceja</a></li>
+                <li><a class="cat-link" href="#" data-cat="Ombligo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c488_Akira_Piercing_Acero_OMBLIGO.jpg">Ombligo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Oreja" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c490_Akira_Piercing_Acero_OREJA.jpg">Oreja</a></li>
+                <li><a class="cat-link" href="#" data-cat="Labio" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c492_Akira_Piercing_Acero_LABIO.jpg">Labio</a></li>
+                <li><a class="cat-link" href="#" data-cat="Nariz" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c494_Akira_Piercing_Acero_NARIZ.jpg">Nariz</a></li>
+                <li><a class="cat-link" href="#" data-cat="Pezón" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c496_Akira_Piercing_Acero_PEZON.jpg">Pezón</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">PTFE-BioPlast</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="PTFE-BioPlast">PTFE-BioPlast</a>
               <ul>
-                <li><a href="#">PTFE-BioPlast</a></li>
+                <li><a class="cat-link" href="#" data-cat="PTFE-BioPlast" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c39_PTFE_Bio-Plastico-2.jpg">PTFE-BioPlast</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Microdermal</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Microdermal">Microdermal</a>
               <ul>
-                <li><a href="#">Microdermal 0,9</a></li>
-                <li><a href="#">Microdermal 1,2</a></li>
-                <li><a href="#">Repuestos 1,2</a></li>
+                <li><a class="cat-link" href="#" data-cat="Microdermal 0,9" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c982_MICRODERMAL-0.9mm.jpg">Microdermal 0,9</a></li>
+                <li><a class="cat-link" href="#" data-cat="Microdermal 1,2" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c27_MICRODERMAL-COMPLETO-2.jpg">Microdermal 1,2</a></li>
+                <li><a class="cat-link" href="#" data-cat="Repuestos 1,2" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c338_REPUESTOS-MICRODERMAL-2.jpg">Repuestos 1,2</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Septum</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Septum">Septum</a>
               <ul>
-                <li><a href="#">Acero</a></li>
-                <li><a href="#">Acero Negro</a></li>
-                <li><a href="#">Acero Oro</a></li>
-                <li><a href="#">Titanio</a></li>
-                <li><a href="#">Rodio</a></li>
-                <li><a href="#">Bronce</a></li>
-                <li><a href="#">Falsos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acero" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c388_1-ACERO.jpg">Acero</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acero Negro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c801_2.ACERO-NEGRO.jpg">Acero Negro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acero Oro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c803_3.ACERO-ORO-0.jpg">Acero Oro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Titanio" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c805_4.TITANIO.jpg">Titanio</a></li>
+                <li><a class="cat-link" href="#" data-cat="Rodio" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c807_5.RODIO-0.jpg">Rodio</a></li>
+                <li><a class="cat-link" href="#" data-cat="Bronce" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c809_6.BRONCE.jpg">Bronce</a></li>
+                <li><a class="cat-link" href="#" data-cat="Falsos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c811_7.FALSOS-0.jpg">Falsos</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Bananas ombligo</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Bananas ombligo">Bananas ombligo</a>
               <ul>
-                <li><a href="#">Bananas ombligo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Bananas ombligo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c55_BANANAS-OMBLIGO-2.jpg">Bananas ombligo</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Dilataciones</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Dilataciones">Dilataciones</a>
               <ul>
-                <li><a href="#">Acero</a></li>
-                <li><a href="#">Hueso</a></li>
-                <li><a href="#">Pyrex</a></li>
-                <li><a href="#">Natural</a></li>
-                <li><a href="#">Falso Dilatador</a></li>
-                <li><a href="#">Acrílico</a></li>
-                <li><a href="#">Silicona</a></li>
-                <li><a href="#">Bronce</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acero" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c60_DILATACIONES_ACERO-2.jpg">Acero</a></li>
+                <li><a class="cat-link" href="#" data-cat="Hueso" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c62_HUESO-2.jpg">Hueso</a></li>
+                <li><a class="cat-link" href="#" data-cat="Pyrex" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c398_PYREX-2.jpg">Pyrex</a></li>
+                <li><a class="cat-link" href="#" data-cat="Natural" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c64_NATURAL-2.jpg">Natural</a></li>
+                <li><a class="cat-link" href="#" data-cat="Falso Dilatador" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c66_DILATACIONES_FALSAS-2.jpg">Falso Dilatador</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acrílico" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c68_ACRILICO-2.jpg">Acrílico</a></li>
+                <li><a class="cat-link" href="#" data-cat="Silicona" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c70_SILICONA-2.jpg">Silicona</a></li>
+                <li><a class="cat-link" href="#" data-cat="Bronce" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c528_Dilataciones_Etnicas.jpg">Bronce</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Joyeria Etnica</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Joyeria Etnica">Joyeria Etnica</a>
               <ul>
-                <li><a href="#">Pendientes</a></li>
-                <li><a href="#">Dilataciones</a></li>
-                <li><a href="#">Pesos</a></li>
-                <li><a href="#">Piercing Etnico</a></li>
+                <li><a class="cat-link" href="#" data-cat="Pendientes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c502_Pendientes_Etnicos.jpg">Pendientes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Dilataciones" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c522_Dilataciones_Etnicas.jpg">Dilataciones</a></li>
+                <li><a class="cat-link" href="#" data-cat="Pesos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c524_Pesos_Etnicos.jpg">Pesos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Piercing Etnico" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c526_Piercing_Etnico.jpg">Piercing Etnico</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Acrílico-UV</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Acrílico-UV">Acrílico-UV</a>
               <ul>
-                <li><a href="#">Lengua</a></li>
-                <li><a href="#">Ombligo</a></li>
-                <li><a href="#">Ceja</a></li>
-                <li><a href="#">Labio</a></li>
+                <li><a class="cat-link" href="#" data-cat="Lengua" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c73_LENGUA-2.jpg">Lengua</a></li>
+                <li><a class="cat-link" href="#" data-cat="Ombligo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c75_OMBLIGO-2.jpg">Ombligo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Ceja" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c77_CEJA-2.jpg">Ceja</a></li>
+                <li><a class="cat-link" href="#" data-cat="Labio" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c79_LABIO-2.jpg">Labio</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Repuestos</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Repuestos">Repuestos</a>
               <ul>
-                <li><a href="#">Acero</a></li>
-                <li><a href="#">Negro, Oro y Titanio</a></li>
-                <li><a href="#">UV 1.2</a></li>
-                <li><a href="#">UV 1.6</a></li>
+                <li><a class="cat-link" href="#" data-cat="Acero" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c84_ACERO-2.jpg">Acero</a></li>
+                <li><a class="cat-link" href="#" data-cat="Negro, Oro y Titanio" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c86_NEGRO-ORO-Y-TITANIO-2.jpg">Negro, Oro y Titanio</a></li>
+                <li><a class="cat-link" href="#" data-cat="UV 1.2" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c90_UV-12-2.jpg">UV 1.2</a></li>
+                <li><a class="cat-link" href="#" data-cat="UV 1.6" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c92_UV-16-2.jpg">UV 1.6</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">KITs de Inicio</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="KITs de Inicio">KITs de Inicio</a>
               <ul>
-                <li><a href="#">KITs de Inicio</a></li>
+                <li><a class="cat-link" href="#" data-cat="KITs de Inicio" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c415_KITS-DE-INICIO-2.jpg">KITs de Inicio</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Body-Mod</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Body-Mod">Body-Mod</a>
               <ul>
-                <li><a href="#">Implantes</a></li>
-                <li><a href="#">Suspensión</a></li>
+                <li><a class="cat-link" href="#" data-cat="Implantes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c140_IMPLANTES-2.jpg">Implantes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Suspensión" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c142_SUSPENSION1.jpg">Suspensión</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Expositores</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Expositores">Expositores</a>
               <ul>
-                <li><a href="#">Expositores</a></li>
+                <li><a class="cat-link" href="#" data-cat="Expositores" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c95_Expositor.jpg">Expositores</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Herramientas</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Herramientas">Herramientas</a>
               <ul>
-                <li><a href="#">Herramientas</a></li>
-                <li><a href="#">Herramientas Desechables</a></li>
-                <li><a href="#">Marcadores</a></li>
+                <li><a class="cat-link" href="#" data-cat="Herramientas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c98_HERRAMIENTAS-2.jpg">Herramientas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Herramientas Desechables" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1006_HERRAMIENTAS%20DESECHABLES_NEW.jpg">Herramientas Desechables</a></li>
+                <li><a class="cat-link" href="#" data-cat="Marcadores" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1008_MARCADORES.jpg">Marcadores</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Sanitario Piercing</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Sanitario Piercing">Sanitario Piercing</a>
               <ul>
-                <li><a href="#">Perforación</a></li>
-                <li><a href="#">Guantes</a></li>
-                <li><a href="#">Limpieza - Jabones</a></li>
-                <li><a href="#">Desinfección</a></li>
-                <li><a href="#">Esterilización</a></li>
-                <li><a href="#">Protección</a></li>
-                <li><a href="#">Cuidados Piercing</a></li>
-                <li><a href="#">Gestión de Residuos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Perforación" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c282_CATETER-PUNCH-2.jpg">Perforación</a></li>
+                <li><a class="cat-link" href="#" data-cat="Guantes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c284_GUANTES-2.jpg">Guantes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Limpieza - Jabones" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c286_LIMPIEZA-Y-JABONES-2.jpg">Limpieza - Jabones</a></li>
+                <li><a class="cat-link" href="#" data-cat="Desinfección" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c451_DESINFECCON-2.jpg">Desinfección</a></li>
+                <li><a class="cat-link" href="#" data-cat="Esterilización" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c555_ESTERILIZACION.jpg">Esterilización</a></li>
+                <li><a class="cat-link" href="#" data-cat="Protección" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c453_PROTECCION-2.jpg">Protección</a></li>
+                <li><a class="cat-link" href="#" data-cat="Cuidados Piercing" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c455_CUIDADO-PIERCING-2.jpg">Cuidados Piercing</a></li>
+                <li><a class="cat-link" href="#" data-cat="Gestión de Residuos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c288_GESTION-DE-RESIDUOS-2.jpg">Gestión de Residuos</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Mobiliario</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Mobiliario">Mobiliario</a>
               <ul>
-                <li><a href="#">Camillas</a></li>
-                <li><a href="#">Mesas</a></li>
-                <li><a href="#">Taburetes</a></li>
-                <li><a href="#">Iluminación</a></li>
-                <li><a href="#">Lavamanos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Camillas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c875_1.1Camillas.jpg">Camillas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Mesas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c877_1.3mesas.jpg">Mesas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Taburetes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c879_1.2Taburete.jpg">Taburetes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Iluminación" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c881_9B-Iluminacion-new.jpg">Iluminación</a></li>
+                <li><a class="cat-link" href="#" data-cat="Lavamanos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c883_9D-Lavamanos-new.jpg">Lavamanos</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Ofertas Piercing</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Ofertas Piercing">Ofertas Piercing</a>
               <ul>
-                <li><a href="#">Colección Acero</a></li>
-                <li><a href="#">Ombligo</a></li>
-                <li><a href="#">Oreja</a></li>
-                <li><a href="#">Dilataciones</a></li>
-                <li><a href="#">Más Ofertas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Colección Acero" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c748_1%20COLECCION%20ACERO-1.jpg">Colección Acero</a></li>
+                <li><a class="cat-link" href="#" data-cat="Ombligo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c750_2%20OMBLIGO-1.jpg">Ombligo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Oreja" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c752_3%20OREJA.jpg">Oreja</a></li>
+                <li><a class="cat-link" href="#" data-cat="Dilataciones" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c754_4%20DILATACIONES-1.jpg">Dilataciones</a></li>
+                <li><a class="cat-link" href="#" data-cat="Más Ofertas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c333_5%20VARIOS-1.jpg">Más Ofertas</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Anodizador</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Anodizador">Anodizador</a>
               <ul>
-                <li><a href="#">Anodizador</a></li>
+                <li><a class="cat-link" href="#" data-cat="Anodizador" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c940_ANODIZADOR.jpg">Anodizador</a></li>
               </ul>
             </div>
           </div>
@@ -711,146 +732,146 @@
       </div>
       <div class="nav-item">
         <a href="#" class="nav-top">Micropigmentación<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></a>
-        <div class="mega" id="mega-micro">
+        <div class="mega" id="mega-micro" data-dept="micro" data-dept-label="Micropigmentación">
           <div class="mega-cols">
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Agujas Micro</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Agujas Micro">Agujas Micro</a>
               <ul>
-                <li><a href="#">AKIRA-Micro</a></li>
-                <li><a href="#">SAIKOu</a></li>
-                <li><a href="#">FINELINE</a></li>
-                <li><a href="#">BISHOP - PMU</a></li>
-                <li><a href="#">VERSUS</a></li>
-                <li><a href="#">Vertix PICO</a></li>
-                <li><a href="#">Vertix NANO</a></li>
-                <li><a href="#">KWADRON-Micro</a></li>
-                <li><a href="#">EZ-Micro</a></li>
-                <li><a href="#">CHEYENNE</a></li>
-                <li><a href="#">KWADRON-Classic</a></li>
-                <li><a href="#">DERMAPEN</a></li>
+                <li><a class="cat-link" href="#" data-cat="AKIRA-Micro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c584_4G-AKIRA.jpg">AKIRA-Micro</a></li>
+                <li><a class="cat-link" href="#" data-cat="SAIKOu" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1029_SAIKO.jpg">SAIKOu</a></li>
+                <li><a class="cat-link" href="#" data-cat="FINELINE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c978_FINE%20LINE.jpg">FINELINE</a></li>
+                <li><a class="cat-link" href="#" data-cat="BISHOP - PMU" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c907_BISHOP.jpg">BISHOP - PMU</a></li>
+                <li><a class="cat-link" href="#" data-cat="VERSUS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c901_4H-VERSUS.jpg">VERSUS</a></li>
+                <li><a class="cat-link" href="#" data-cat="Vertix PICO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c764_4A-VERTIX-PICO.jpg">Vertix PICO</a></li>
+                <li><a class="cat-link" href="#" data-cat="Vertix NANO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c717_4A-VERTIX-NANO.jpg">Vertix NANO</a></li>
+                <li><a class="cat-link" href="#" data-cat="KWADRON-Micro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c695_4D-Kwadron-MICRO.jpg">KWADRON-Micro</a></li>
+                <li><a class="cat-link" href="#" data-cat="EZ-Micro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c691_4D-EZ-MICRO.jpg">EZ-Micro</a></li>
+                <li><a class="cat-link" href="#" data-cat="CHEYENNE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c693_4D-Cartuchos-CHEYENNE.jpg">CHEYENNE</a></li>
+                <li><a class="cat-link" href="#" data-cat="KWADRON-Classic" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c697_4D-Kwadron-Classic.jpg">KWADRON-Classic</a></li>
+                <li><a class="cat-link" href="#" data-cat="DERMAPEN" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c933_VENUS.jpg">DERMAPEN</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Equipos Micro</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Equipos Micro">Equipos Micro</a>
               <ul>
-                <li><a href="#">Wireless</a></li>
-                <li><a href="#">MICROBEAU</a></li>
-                <li><a href="#">AVA</a></li>
-                <li><a href="#">BIOMASER WIRELESS</a></li>
-                <li><a href="#">AMBITION</a></li>
-                <li><a href="#">CHEYENNE</a></li>
-                <li><a href="#">MAST</a></li>
-                <li><a href="#">BIOMASER</a></li>
-                <li><a href="#">Dermógrafos Económicos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Wireless" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c719_1F-Wireles-3.0.jpg">Wireless</a></li>
+                <li><a class="cat-link" href="#" data-cat="MICROBEAU" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c689_1A-Microbeau-1.0.jpg">MICROBEAU</a></li>
+                <li><a class="cat-link" href="#" data-cat="AVA" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c962_AVA-1.jpg">AVA</a></li>
+                <li><a class="cat-link" href="#" data-cat="BIOMASER WIRELESS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c972_1C-Biomaser-Wireless.jpg">BIOMASER WIRELESS</a></li>
+                <li><a class="cat-link" href="#" data-cat="AMBITION" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c964_AMBITION.jpg">AMBITION</a></li>
+                <li><a class="cat-link" href="#" data-cat="CHEYENNE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c642_1-B-Cheyenne.jpg">CHEYENNE</a></li>
+                <li><a class="cat-link" href="#" data-cat="MAST" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c796_1E-MAST_rotary_micropigmentacion_pen_universal_wireless.jpg">MAST</a></li>
+                <li><a class="cat-link" href="#" data-cat="BIOMASER" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c594_1-C-Biomaser.jpg">BIOMASER</a></li>
+                <li><a class="cat-link" href="#" data-cat="Dermógrafos Económicos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c576_Dermografos%20Economicos.jpg">Dermógrafos Económicos</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Fuentes y Baterías</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Fuentes y Baterías">Fuentes y Baterías</a>
               <ul>
-                <li><a href="#">WIRELESS</a></li>
-                <li><a href="#">ECONÓMICAS</a></li>
-                <li><a href="#">NEMESIS</a></li>
-                <li><a href="#">CRITICAL</a></li>
-                <li><a href="#">MUSOTOKU</a></li>
-                <li><a href="#">FIVE MOTHS</a></li>
-                <li><a href="#">CHEYENNE</a></li>
-                <li><a href="#">FK IRONS</a></li>
+                <li><a class="cat-link" href="#" data-cat="WIRELESS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c715_2-7-Wireless.jpg">WIRELESS</a></li>
+                <li><a class="cat-link" href="#" data-cat="ECONÓMICAS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c655_2-0_nueva-123456-Economica.jpg">ECONÓMICAS</a></li>
+                <li><a class="cat-link" href="#" data-cat="NEMESIS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c709_2-1-Nemesis.jpg">NEMESIS</a></li>
+                <li><a class="cat-link" href="#" data-cat="CRITICAL" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c705_2-2-Critical.jpg">CRITICAL</a></li>
+                <li><a class="cat-link" href="#" data-cat="MUSOTOKU" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c707_2-3-Musotoku.jpg">MUSOTOKU</a></li>
+                <li><a class="cat-link" href="#" data-cat="FIVE MOTHS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c711_2-4-FiveMoth.jpg">FIVE MOTHS</a></li>
+                <li><a class="cat-link" href="#" data-cat="CHEYENNE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c651_2B-Fuentes-Cheyenne.jpg">CHEYENNE</a></li>
+                <li><a class="cat-link" href="#" data-cat="FK IRONS" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c713_2-6-FKirons.jpg">FK IRONS</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Elementos Equipos</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Elementos Equipos">Elementos Equipos</a>
               <ul>
-                <li><a href="#">Cables</a></li>
-                <li><a href="#">Pedales</a></li>
-                <li><a href="#">Varios</a></li>
+                <li><a class="cat-link" href="#" data-cat="Cables" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c598_3B-Cables.jpg">Cables</a></li>
+                <li><a class="cat-link" href="#" data-cat="Pedales" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c596_3A-Pedales.jpg">Pedales</a></li>
+                <li><a class="cat-link" href="#" data-cat="Varios" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c592_3C-Varios-new.jpg">Varios</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Microblading</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Microblading">Microblading</a>
               <ul>
-                <li><a href="#">Agujas Microblading</a></li>
-                <li><a href="#">Herramientas Microblading</a></li>
-                <li><a href="#">Kit Desechables Microblading</a></li>
+                <li><a class="cat-link" href="#" data-cat="Agujas Microblading" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c586_5A-Agujas-Microblading-new.jpg">Agujas Microblading</a></li>
+                <li><a class="cat-link" href="#" data-cat="Herramientas Microblading" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c588_5B-Herramientas-MicroBlading-new.jpg">Herramientas Microblading</a></li>
+                <li><a class="cat-link" href="#" data-cat="Kit Desechables Microblading" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c590_5C-Kit-Desechables-MicroBlading-new.jpg">Kit Desechables Microblading</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Accesorios Micro</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Accesorios Micro">Accesorios Micro</a>
               <ul>
-                <li><a href="#">Accesorios Dibujo</a></li>
-                <li><a href="#">Accesorios Máquinas</a></li>
-                <li><a href="#">Accesorios Tinta</a></li>
-                <li><a href="#">Material de Prácticas</a></li>
-                <li><a href="#">Accesorios Varios</a></li>
-                <li><a href="#">Material Didáctico</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Dibujo" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c600_6A-Accesorios-Dibujo-new.jpg">Accesorios Dibujo</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Máquinas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c602_6B-Accesorios-Maquinas-new.jpg">Accesorios Máquinas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Tinta" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c604_6C-Accesorios-Tinta-new.jpg">Accesorios Tinta</a></li>
+                <li><a class="cat-link" href="#" data-cat="Material de Prácticas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c606_6D-Material-de-Practicas-new.jpg">Material de Prácticas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Accesorios Varios" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c608_6E-Accesorios-Varios-new.jpg">Accesorios Varios</a></li>
+                <li><a class="cat-link" href="#" data-cat="Material Didáctico" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c671_6F-Accesorios-libros.jpg">Material Didáctico</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Pigmentos AEMPS</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Pigmentos AEMPS">Pigmentos AEMPS</a>
               <ul>
-                <li><a href="#">BIOTEK</a></li>
-                <li><a href="#">DOREME</a></li>
-                <li><a href="#">VIKING</a></li>
-                <li><a href="#">ECLIPSE</a></li>
-                <li><a href="#">ELECTRIC INK</a></li>
+                <li><a class="cat-link" href="#" data-cat="BIOTEK" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c893_biotek-pigmentos-cejas-mte.jpg">BIOTEK</a></li>
+                <li><a class="cat-link" href="#" data-cat="DOREME" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c917_7I-DOREME.jpg">DOREME</a></li>
+                <li><a class="cat-link" href="#" data-cat="VIKING" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c997_VIKING.jpg">VIKING</a></li>
+                <li><a class="cat-link" href="#" data-cat="ECLIPSE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c999_ECLIPSE.jpg">ECLIPSE</a></li>
+                <li><a class="cat-link" href="#" data-cat="ELECTRIC INK" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1001_ELECTRIC-AEMPS.jpg">ELECTRIC INK</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Pigmentos Simuladores</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Pigmentos Simuladores">Pigmentos Simuladores</a>
               <ul>
-                <li><a href="#">Dynamic</a></li>
-                <li><a href="#">Hanafy</a></li>
-                <li><a href="#">Hanafy - SET</a></li>
-                <li><a href="#">Etalon Mix</a></li>
-                <li><a href="#">Tina Davies - SET</a></li>
-                <li><a href="#">PermaBlend - SET</a></li>
-                <li><a href="#">PermaBlend - Cejas</a></li>
-                <li><a href="#">PermaBlend - Ojos</a></li>
-                <li><a href="#">PermaBlend - Labios</a></li>
-                <li><a href="#">PermaBlend - Areola</a></li>
-                <li><a href="#">PermaBlend - Camuflaje</a></li>
-                <li><a href="#">PermaBlend - Correctores</a></li>
-                <li><a href="#">Nuance</a></li>
-                <li><a href="#">PermaBlend - Capilar</a></li>
-                <li><a href="#">5PM Shadow</a></li>
-                <li><a href="#">MFINE</a></li>
-                <li><a href="#">Folicule</a></li>
-                <li><a href="#">Diluyentes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Dynamic" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1025_Dynamic_PMU.jpg">Dynamic</a></li>
+                <li><a class="cat-link" href="#" data-cat="Hanafy" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c966_7%20HANAFY.jpg">Hanafy</a></li>
+                <li><a class="cat-link" href="#" data-cat="Hanafy - SET" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c968_7%20HANAFY-SET.jpg">Hanafy - SET</a></li>
+                <li><a class="cat-link" href="#" data-cat="Etalon Mix" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1035_Etalon.jpg">Etalon Mix</a></li>
+                <li><a class="cat-link" href="#" data-cat="Tina Davies - SET" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1012_7L-Tina%20Davies.jpg">Tina Davies - SET</a></li>
+                <li><a class="cat-link" href="#" data-cat="PermaBlend - SET" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c725_7C-KITS-Permablend-Practicas.jpg">PermaBlend - SET</a></li>
+                <li><a class="cat-link" href="#" data-cat="PermaBlend - Cejas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c727_7C-cejas-Permablend-Practicas.jpg">PermaBlend - Cejas</a></li>
+                <li><a class="cat-link" href="#" data-cat="PermaBlend - Ojos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c729_7C-ojos-Permablend-Practicas.jpg">PermaBlend - Ojos</a></li>
+                <li><a class="cat-link" href="#" data-cat="PermaBlend - Labios" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c731_7C-LABIOS-Permablend-Practicas.jpg">PermaBlend - Labios</a></li>
+                <li><a class="cat-link" href="#" data-cat="PermaBlend - Areola" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c735_7C-AREOLAS-Permablend-Practicas.jpg">PermaBlend - Areola</a></li>
+                <li><a class="cat-link" href="#" data-cat="PermaBlend - Camuflaje" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c737_7C-CAMUFLAJE-Permablend-Practicas.jpg">PermaBlend - Camuflaje</a></li>
+                <li><a class="cat-link" href="#" data-cat="PermaBlend - Correctores" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c739_7C-CORRECTORES-Permablend-Practicas.jpg">PermaBlend - Correctores</a></li>
+                <li><a class="cat-link" href="#" data-cat="Nuance" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c760_7B-NUANCE.jpg">Nuance</a></li>
+                <li><a class="cat-link" href="#" data-cat="PermaBlend - Capilar" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c942_7C-CAPILAR-Permablend-Practicas.jpg">PermaBlend - Capilar</a></li>
+                <li><a class="cat-link" href="#" data-cat="5PM Shadow" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c813_7G-5PM.jpg">5PM Shadow</a></li>
+                <li><a class="cat-link" href="#" data-cat="MFINE" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c984_7K_MFINE.jpg">MFINE</a></li>
+                <li><a class="cat-link" href="#" data-cat="Folicule" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c995_FOLICULE.jpg">Folicule</a></li>
+                <li><a class="cat-link" href="#" data-cat="Diluyentes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c783_Diluyente.jpg">Diluyentes</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Sanitario Micro</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Sanitario Micro">Sanitario Micro</a>
               <ul>
-                <li><a href="#">Guantes</a></li>
-                <li><a href="#">Limpieza (jabones)</a></li>
-                <li><a href="#">Desinfección</a></li>
-                <li><a href="#">Protección (fundas)</a></li>
-                <li><a href="#">Preparación de la Micro</a></li>
-                <li><a href="#">Cuidados MICRO</a></li>
-                <li><a href="#">Gestión de residuos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Guantes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c612_8A-Guantes-new.jpg">Guantes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Limpieza (jabones)" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c614_8B-Limpieza-Jabones-new.jpg">Limpieza (jabones)</a></li>
+                <li><a class="cat-link" href="#" data-cat="Desinfección" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c616_8C-Desinfeccion-new.jpg">Desinfección</a></li>
+                <li><a class="cat-link" href="#" data-cat="Protección (fundas)" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c618_8D-Proteccion-Fundas-new.jpg">Protección (fundas)</a></li>
+                <li><a class="cat-link" href="#" data-cat="Preparación de la Micro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c620_8E-Preparacion-de-la-MICRO-new.jpg">Preparación de la Micro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Cuidados MICRO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c622_8F-Cuidados-Micro.jpg">Cuidados MICRO</a></li>
+                <li><a class="cat-link" href="#" data-cat="Gestión de residuos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c624_8G-Gestion-de-Residuos-new.jpg">Gestión de residuos</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Mobiliario</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Mobiliario">Mobiliario</a>
               <ul>
-                <li><a href="#">Camillas</a></li>
-                <li><a href="#">Mesas</a></li>
-                <li><a href="#">Taburetes</a></li>
-                <li><a href="#">Iluminación</a></li>
-                <li><a href="#">Rótulos luminosos</a></li>
-                <li><a href="#">Lavamanos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Camillas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c626_9-1-Camillas.jpg">Camillas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Mesas" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c864_9-2-mesa.jpg">Mesas</a></li>
+                <li><a class="cat-link" href="#" data-cat="Taburetes" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c866_9-2-taburetes.jpg">Taburetes</a></li>
+                <li><a class="cat-link" href="#" data-cat="Iluminación" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c628_9B-Iluminacion-1.jpg">Iluminación</a></li>
+                <li><a class="cat-link" href="#" data-cat="Rótulos luminosos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c630_9C-Rotulos-Luminosos.jpg">Rótulos luminosos</a></li>
+                <li><a class="cat-link" href="#" data-cat="Lavamanos" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c632_9D-Lavamanos-new.jpg">Lavamanos</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Kits de Micro</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Kits de Micro">Kits de Micro</a>
               <ul>
-                <li><a href="#">Kits de Micro</a></li>
-                <li><a href="#">Kits de Inicio INSTITUTO</a></li>
+                <li><a class="cat-link" href="#" data-cat="Kits de Micro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c634_10-%20Kits%20de%20inicio%20.jpg">Kits de Micro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Kits de Inicio INSTITUTO" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c1033_10-%20Kits%20de%20inicio%20INSTITUTO.jpg">Kits de Inicio INSTITUTO</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <a class="mega-col-title" href="#">Outlet Micro</a>
+              <a class="mega-col-title cat-link" href="#" data-cat="Outlet Micro">Outlet Micro</a>
               <ul>
-                <li><a href="#">Outlet Micro</a></li>
+                <li><a class="cat-link" href="#" data-cat="Outlet Micro" data-thumb="http://www.akirabodyart.com/tools/thumbs.aspx?sw=110&amp;sh=110&amp;p=/images/category/1/c956_Outlet%20Micro.jpg">Outlet Micro</a></li>
               </ul>
             </div>
           </div>
@@ -876,9 +897,6 @@
           <a href="#">Videos MICRO</a>
         </div>
       </div>
-      <a href="#novedades-tattoo">Novedades</a>
-      <a href="#marcas">Marcas</a>
-      <a href="#contacto">Contacto</a>
     </nav>
     <div class="nav-actions">
       <a href="#" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></a>
@@ -1388,6 +1406,26 @@
   </div>
 </footer>
 
+<div class="catalog-overlay" id="catalog-overlay" role="dialog" aria-modal="true" aria-labelledby="catalog-title">
+  <div class="catalog-bar">
+    <div class="wrap">
+      <a href="#" class="catalog-back" id="catalog-back"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Volver a la tienda</a>
+      <button class="catalog-close" id="catalog-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="catalog-head">
+      <div class="catalog-thumb" id="catalog-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 15l4-4 4 4 4-6 4 6"/></svg></div>
+      <div>
+        <div class="catalog-crumb" id="catalog-crumb">Tattoo</div>
+        <h1 id="catalog-title">Categoría</h1>
+      </div>
+    </div>
+    <p class="catalog-note">Estas son las novedades disponibles ahora mismo en esta sección. El catálogo completo de esta categoría se está incorporando a la tienda.</p>
+  </div>
+  <div class="wrap catalog-products" id="catalog-products"></div>
+</div>
+
 <script>
 (function(){
   // Mega menu open/close is driven by a JS grace-period timer rather than pure CSS
@@ -1421,6 +1459,82 @@
     item.addEventListener('focusout', function(e){
       if(!item.contains(e.relatedTarget)) scheduleClose();
     });
+  });
+})();
+
+(function(){
+  // Every nav/mega-menu category link opens the same-site catalog overlay instead of
+  // navigating anywhere. It reuses the real product cards already rendered in the
+  // "Novedades" sections for that department (Tattoo / Piercing / Micropigmentación),
+  // and shows the category's own real thumbnail when the source data has one.
+  var overlay = document.getElementById('catalog-overlay');
+  if(!overlay) return;
+
+  var DEPT_SECTION = { tattoo: 'novedades-tattoo', piercing: 'novedades-piercing', micro: 'novedades-micro' };
+  var crumbEl = document.getElementById('catalog-crumb');
+  var titleEl = document.getElementById('catalog-title');
+  var thumbEl = document.getElementById('catalog-thumb');
+  var productsEl = document.getElementById('catalog-products');
+  var lastFocused = null;
+
+  function renderProducts(deptSlug){
+    productsEl.innerHTML = '';
+    var sourceId = DEPT_SECTION[deptSlug];
+    var source = sourceId && document.getElementById(sourceId);
+    var cards = source ? source.querySelectorAll('.product-card') : [];
+    if(!cards.length){
+      var empty = document.createElement('p');
+      empty.className = 'catalog-empty';
+      empty.textContent = 'Todavía no hay productos cargados para esta sección.';
+      productsEl.appendChild(empty);
+      return;
+    }
+    var row = document.createElement('div');
+    row.className = 'product-row';
+    cards.forEach(function(card){ row.appendChild(card.cloneNode(true)); });
+    productsEl.appendChild(row);
+  }
+
+  function openCatalog(link){
+    var mega = link.closest('.mega');
+    var deptSlug = mega ? mega.getAttribute('data-dept') : null;
+    var deptLabel = mega ? mega.getAttribute('data-dept-label') : (link.closest('.nav-item') ? link.closest('.nav-item').querySelector('.nav-top').textContent.trim() : '');
+    var catName = link.getAttribute('data-cat') || link.textContent.trim();
+    var thumb = link.getAttribute('data-thumb');
+
+    crumbEl.textContent = deptLabel || 'Akira';
+    titleEl.textContent = catName;
+    if(thumb){
+      thumbEl.innerHTML = '<img src="' + thumb.replace(/&amp;/g, '&') + '" alt="' + catName.replace(/"/g, '&quot;') + '">';
+    } else {
+      thumbEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 15l4-4 4 4 4-6 4 6"/></svg>';
+    }
+    renderProducts(deptSlug);
+
+    lastFocused = document.activeElement;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    overlay.scrollTop = 0;
+    document.getElementById('catalog-close').focus();
+  }
+
+  function closeCatalog(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  document.querySelectorAll('a.cat-link').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      openCatalog(link);
+    });
+  });
+
+  document.getElementById('catalog-close').addEventListener('click', function(e){ e.preventDefault(); closeCatalog(); });
+  document.getElementById('catalog-back').addEventListener('click', function(e){ e.preventDefault(); closeCatalog(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('open')) closeCatalog();
   });
 })();
 </script>
